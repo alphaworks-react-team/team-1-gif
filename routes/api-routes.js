@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 require("dotenv").config();
-const API = process.env.REACT_APP_GLIZZY_KEY;
+const API = process.env.GLIZZY_KEY;
 
 const trendingSearch = () => {
   return new Promise(async (resolve, reject) => {
