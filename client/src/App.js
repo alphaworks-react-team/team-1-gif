@@ -2,6 +2,10 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+//Components
+import Container from "./component/Container";
 
 function App() {
   const [trending, setTrending] = useState([]);
@@ -14,15 +18,17 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {trending &&
-        trending.map((gif, index) => (
-          <div key={index}>
-            <h5>{gif.title}</h5>
+    <div className="glizzy-app">
+      <Container>
+        {trending &&
+          trending.map((gif, index) => (
+            <div key={index}>
+              <h5>{gif.title}</h5>
 
-            <img src={gif.images.fixed_height.url} alt="" />
-          </div>
-        ))}
+              <img src={gif.images.original.url} alt="" />
+            </div>
+          ))}
+      </Container>
     </div>
   );
 }

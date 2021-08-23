@@ -11,7 +11,7 @@ const trendingSearch = () => {
       );
       resolve(request.data);
     } catch (err) {
-      console.log(err);
+      reject(err);
     }
   });
 };
