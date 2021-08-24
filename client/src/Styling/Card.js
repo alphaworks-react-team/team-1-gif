@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Card = styled.div`
   position: relative;
@@ -10,12 +10,12 @@ export const Card = styled.div`
   /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); */
   /* -moz-box-shadow:    3px 3px 5px 6px black;
   -webkit-box-shadow: 3px 3px 5px 6px black; */
-  box-shadow: 0px 0px 6px 1px black;
+  /* box-shadow: 0px 0px 6px 1px black; */
 
   transition: all 0.3s ease-in-out;
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     z-index: -1;
     /* width: 100%;
@@ -31,7 +31,11 @@ export const Card = styled.div`
   }
 
   &:hover {
-    transform: scale(1.2, 1.2);
+    transform: scale(1.6, 1.6);
+    z-index: 1;
+    cursor: pointer;
+
+    /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
   }
   &:hover:after {
     opacity: -1;
