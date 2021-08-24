@@ -5,6 +5,7 @@ const API = process.env.GLIZZY_KEY;
 
 const trendingSearch = () => {
   return new Promise(async (resolve, reject) => {
+    console.log("hello");
     try {
       const request = await axios.get(
         `https://api.giphy.com/v1/gifs/trending?api_key=${API}`
@@ -24,7 +25,7 @@ router.get("/api", async (req, res) => {
   }
 });
 
-const searchGiphy = search => {
+const searchGiphy = (search = "the office") => {
   return new Promise(async (resolve, reject) => {
     try {
       const request = await axios.get(
@@ -38,9 +39,9 @@ const searchGiphy = search => {
   });
 };
 
-router.get('/api/search', async (req, res) => {
+router.get("/api/search", async (req, res) => {
   try {
-    console.log(req.query.search)
+    console.log(req.query);
     res.json(await searchGiphy(req.query.search));
   } catch (err) {
     res.json(err);
