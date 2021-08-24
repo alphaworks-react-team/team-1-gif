@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   padding-top: 40px;
 }
 

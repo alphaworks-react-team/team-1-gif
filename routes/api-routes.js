@@ -47,4 +47,26 @@ router.get("/api/search", async (req, res) => {
   }
 });
 
+const getCategories = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const request = await axios.get(
+        `https://api.giphy.com/v1/gifs/categories?api_key=${API}`
+      );
+      resolve(request.data);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+router.get("/api/categories", async (req, res) => {
+  try {
+    // console.log(req.query);
+    res.json(await getCategories(res));
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 module.exports = router;
