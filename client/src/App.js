@@ -7,6 +7,7 @@ import styled from "styled-components";
 //Components
 import Container from "./component/Container";
 import Search from "./component/Search";
+import Nav from './Styling/Nav'
 
 //Styled Components
 import { Card } from "./Styling/Card";
@@ -43,7 +44,8 @@ function App() {
 
   console.log(trending);
   return (
-    <div className="glizzy-app">
+    <div className='glizzy-app'>
+      <Nav></Nav>
       <Search onClick={onClick} onChange={onChange}></Search>
       <CarouselTest title="Trending">
         {trending &&
@@ -76,7 +78,7 @@ function App() {
           {giph &&
             giph.map((gif, index) => (
               <Card key={index}>
-                <img src={gif.images.fixed_height.url} alt="" />
+                <img src={gif.images.fixed_height.url} alt='' />
               </Card>
             ))}
         </Container>

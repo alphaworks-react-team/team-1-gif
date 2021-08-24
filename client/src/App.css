@@ -13,8 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-flow: column wrap;
-  padding-top: 40px;
+  flex-flow: row wrap;
 }
 
 @-webkit-keyframes Gradient {
@@ -52,3 +51,5 @@
     background-position: 0% 50%;
   }
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
