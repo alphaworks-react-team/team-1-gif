@@ -1,7 +1,15 @@
+*{
+  margin: none;
+  padding: none;
+  border: none;
+}
+
 .glizzy-app {
   background: grey;
   display: flex;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
-  /* flex-flow: column wrap; */
+  flex-flow: column wrap;
+
+  padding-top: 40px;
 }
