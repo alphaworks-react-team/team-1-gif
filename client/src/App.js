@@ -54,7 +54,7 @@ function App() {
           {giph &&
             giph.map((gif, index) => (
               <Card key={index}>
-                <img src={gif.images.original.url} alt="" />
+                <img src={gif.images.fixed_height.url} alt="" />
               </Card>
             ))}
         </Container>
