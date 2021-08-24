@@ -6,7 +6,10 @@ const Container = (props) => {
   const Container = styled.div`
     display: flex;
     flex-flow: row wrap;
-    margin: 0 10rem 0 10rem;
+    justify-content: center;
+    margin: 0 8rem 0 8rem;
+
+    margin-bottom: 5rem;
   `;
 
   return <Container>{props.children}</Container>;
