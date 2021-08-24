@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Box = styled.div`
   height: 50px;
@@ -27,7 +27,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Search = props => {
+const Search = (props) => {
   return (
     <Box>
       <SearchBar onChange={props.onChange}>{props.children}</SearchBar>
