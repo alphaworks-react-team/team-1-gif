@@ -8,6 +8,9 @@ import styled from 'styled-components';
 import Container from './component/Container';
 import Search from './component/Search';
 
+//Styled Components
+import { Card } from './Styling/Card';
+
 function App() {
   const [trending, setTrending] = useState([]);
   const [search, setSearch] = useState('');
@@ -40,10 +43,10 @@ function App() {
         <Container>
           {trending &&
             trending.map((gif, index) => (
-              <div key={index}>
+              <Card key={index}>
                 <h5>{gif.title}</h5>
                 <img src={gif.images.original.url} alt='' />
-              </div>
+              </Card>
             ))}
         </Container>
       ) : (

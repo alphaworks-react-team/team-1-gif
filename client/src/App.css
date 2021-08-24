@@ -10,6 +10,37 @@
   align-items: center;
   justify-content: center;
   flex-flow: column wrap;
-
   padding-top: 40px;
+}
+
+
+.gif-card {
+  position: relative;
+  display: inline-block;
+  /* width: 100px;
+  height: 100px; */
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.gif-card::after{
+  content: '';
+  position: absolute;
+  z-index: -1;
+  /* width: 100%;
+  height: 100%; */
+  opacity: 0;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.gif-card:hover {
+  transform: scale(1.2, 1.2);
+}
+
+.gif-card:hover::after {
+  opacity: 1;
 }
