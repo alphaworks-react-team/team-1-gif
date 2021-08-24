@@ -8,6 +8,7 @@ import styled from "styled-components";
 import Container from "./component/Container";
 import Search from "./component/Search";
 import Nav from './Styling/Nav'
+// import Drop from './Styling/Drop'
 
 //Styled Components
 import { Card } from './Styling/Card';
@@ -40,7 +41,9 @@ function App() {
   console.log(trending)
   return (
     <div className='glizzy-app'>
-      <Nav></Nav>
+      <Nav>
+        {/* <Drop></Drop> */}
+      </Nav>
       <Search onClick={onClick} onChange={onChange}></Search>
       {!giph ? (
         <Container>
