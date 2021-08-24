@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
 width: 100vw;
-height: 13vh;
+height: 15%;
 
 background: black;
 z-index: 2;
@@ -18,7 +18,7 @@ position: sticky;
 
 const Text = styled.div`
   color: white;
-  font-size: 5rem;
+  font-size: 8vw;
   font-family: 'Monoton', cursive;
 `;
 
