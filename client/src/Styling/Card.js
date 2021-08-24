@@ -6,7 +6,7 @@ export const Card = styled.div`
   /* width: 100px;
   height: 100px; */
   border-radius: 5px;
-  background-color: #fff;
+  /* background-color: #fff; */
   /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); */
   /* -moz-box-shadow:    3px 3px 5px 6px black;
   -webkit-box-shadow: 3px 3px 5px 6px black; */

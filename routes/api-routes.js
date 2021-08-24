@@ -25,13 +25,12 @@ router.get("/api", async (req, res) => {
   }
 });
 
-const searchGiphy = (search = "the office") => {
+const searchGiphy = (search) => {
   return new Promise(async (resolve, reject) => {
     try {
       const request = await axios.get(
         `https://api.giphy.com/v1/gifs/search?api_key=${API}&q=${search}`
       );
-      // console.log(request);
       resolve(request.data);
     } catch (err) {
       reject(err);
@@ -47,16 +46,5 @@ router.get("/api/search", async (req, res) => {
     res.json(err);
   }
 });
-
-// router.get("/api", (req, res) => {
-//   axios
-//     .get(`https://api.giphy.com/v1/gifs/trending?api_key=${API}`)
-//     .then()
-//     .catch((err) => console.log(err));
-//   console.log(
-//     axios.get(`https://api.giphy.com/v1/gifs/trending?api_key=${API}`)
-//   );
-//   res.json({ msg: "success" });
-// });
 
 module.exports = router;

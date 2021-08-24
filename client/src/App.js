@@ -36,25 +36,16 @@ function App() {
     console.log(search);
   };
 
+  console.log(trending)
   return (
     <div className="glizzy-app">
       <Search onClick={onClick} onChange={onChange}></Search>
-      {/* <Container>
-        {trending &&
-          trending.map((gif, index) => (
-            <div key={index}>
-              <h5>{gif.title}</h5>
-              <img src={gif.images.original.url} alt="" />
-            </div>
-          ))}
-      </Container> */}
       {!giph ? (
         <Container>
           {trending &&
             trending.map((gif, index) => (
               <Card key={index}>
-                <h5>{gif.title}</h5>
-                <img src={gif.images.original.url} alt='' />
+                <img src={gif.images.fixed_height.url} alt='' />
               </Card>
             ))}
         </Container>
@@ -62,10 +53,9 @@ function App() {
         <Container>
           {giph &&
             giph.map((gif, index) => (
-              <div key={index}>
-                <h5>{gif.title}</h5>
+              <Card key={index}>
                 <img src={gif.images.original.url} alt="" />
-              </div>
+              </Card>
             ))}
         </Container>
       )}

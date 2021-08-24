@@ -6,10 +6,10 @@ const Container = (props) => {
     border: 2px solid red;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-flow: row wrap;
-    width: 60vw;
-    height: 100%;
+    /* width: 60vw;
+    height: 100%; */
   `;
 
   return <Container>{props.children}</Container>;
