@@ -1,59 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import styled from "styled-components";
 
 //Components
-import Container from './component/Container';
-import Search from './component/Search';
+import Container from "./component/Container";
+import Search from "./component/Search";
+
+//Styled Components
+import { Card } from './Styling/Card';
 
 function App() {
   const [trending, setTrending] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [giph, setGiph] = useState(null);
 
   useEffect(() => {
     axios
-      .get('/api')
-      .then(res => setTrending(res.data.data))
-      .catch(err => console.log(err));
+      .get("/api")
+      .then((res) => setTrending(res.data.data))
+      .catch((err) => console.log(err));
   }, []);
 
-  const onClick = (e, search) => {
+  const onClick = (e) => {
     e.preventDefault();
     axios
-      .get(`/api/search/?q=cheese`)
-      .then(res => setGiph(res.data.data))
-      .catch(err => console.log(err));
+      .get(`/api/search/?search=${search}`)
+      .then((res) => setGiph(res.data.data))
+      .catch((err) => console.log(err));
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     setSearch(e.target.value);
     console.log(search);
   };
 
+  console.log(trending)
   return (
-    <div className='glizzy-app'>
+    <div className="glizzy-app">
       <Search onClick={onClick} onChange={onChange}></Search>
       {!giph ? (
         <Container>
           {trending &&
             trending.map((gif, index) => (
-              <div key={index}>
-                <h5>{gif.title}</h5>
-                <img src={gif.images.original.url} alt='' />
-              </div>
+              <Card key={index}>
+                <img src={gif.images.fixed_height.url} alt='' />
+              </Card>
             ))}
         </Container>
       ) : (
         <Container>
           {giph &&
             giph.map((gif, index) => (
-              <div key={index}>
-                <h5>{gif.title}</h5>
-                <img src={gif.images.original.url} alt='' />
-              </div>
+              <Card key={index}>
+                <img src={gif.images.original.url} alt="" />
+              </Card>
             ))}
         </Container>
       )}
