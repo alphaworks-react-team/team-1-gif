@@ -4,10 +4,9 @@ import styled from "styled-components";
 const Container = (props) => {
   
   const Container = styled.div`
-    border: 2px solid red;
     display: flex;
     flex-flow: row wrap;
-    margin: 0 2rem 0 2rem;
+    margin: 0 10rem 0 10rem;
   `;
 
   return <Container>{props.children}</Container>;

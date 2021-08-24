@@ -45,7 +45,7 @@ function App() {
           {trending &&
             trending.map((gif, index) => (
               <Card key={index}>
-                <img src={gif.images.fixed_height.url} alt='' />
+                <img src={gif.images.fixed_height_small.url} alt='' />
               </Card>
             ))}
         </Container>

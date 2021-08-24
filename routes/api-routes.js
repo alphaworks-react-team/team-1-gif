@@ -47,4 +47,26 @@ router.get("/api/search", async (req, res) => {
   }
 });
 
+const randomGlizzy = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const request = await axios.get(
+        `https://api.giphy.com/v1/gifs/random?api_key=${API}`
+      );
+      resolve(request.data);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+router.get("/api/random", async (req,res) =>{
+  try{
+    req.json(randomGlizzy(res))
+  } catch (err) {
+    res.json(err)
+  }
+})
+
+
 module.exports = router;
