@@ -11,7 +11,7 @@ const trendingSearch = () => {
       );
       resolve(request.data);
     } catch (err) {
-      console.log(err);
+      reject(err);
     }
   });
 };
@@ -19,6 +19,29 @@ const trendingSearch = () => {
 router.get("/api", async (req, res) => {
   try {
     res.json(await trendingSearch(res));
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+const searchGiphy = search => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const request = await axios.get(
+        `https://api.giphy.com/v1/gifs/search?api_key=${API}&q=${search}`
+      );
+      // console.log(request);
+      resolve(request.data);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+router.get('/api/search', async (req, res) => {
+  try {
+    console.log(req.query.search)
+    res.json(await searchGiphy(req.query.search));
   } catch (err) {
     res.json(err);
   }
