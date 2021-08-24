@@ -1,10 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Box = styled.div`
   height: 50px;
   width: 200px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,11 +22,10 @@ const SearchBar = styled.input`
 const Button = styled.button`
   height: 35px;
   width: 40px;
-
   cursor: pointer;
 `;
 
-const Search = props => {
+const Search = (props) => {
   return (
     <Box>
       <SearchBar onChange={props.onChange}>{props.children}</SearchBar>

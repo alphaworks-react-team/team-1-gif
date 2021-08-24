@@ -9,7 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-flow: column wrap;
-
+  flex-flow: row wrap;
   padding-top: 40px;
 }
+
+
