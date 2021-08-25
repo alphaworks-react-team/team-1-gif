@@ -48,10 +48,10 @@ function App() {
     <div className="glizzy-app">
       <Nav></Nav>
       <Search onClick={onClick} onChange={onChange}></Search>
-      {giph ? (
+      {giph && (
         <CarouselTest>
           <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
-            {giph}
+            You searched "{search}"
           </h3>
           <div>
             {giph &&
@@ -68,7 +68,7 @@ function App() {
               ))}
           </div>
         </CarouselTest>
-      ) : null}
+      )}
       <CarouselTest title="Trending">
         <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
           Trending
