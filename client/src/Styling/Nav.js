@@ -1,7 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-
-import Drop from './Drop'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Container = styled.div`
 width: 100vw;
@@ -33,17 +32,20 @@ const Aside = styled.div`
 
   display: flex;
   justify-content: center;
+  color: white;
 `;
 
 const Nav = (props) => {
   return (
     <Container>
       <Aside>
-        <Drop></Drop>
+        <Link to={'/'}>Home</Link>
       </Aside>
-      <Text>GLIZZY APP</Text>
+      <Text>GIPHY APP</Text>
       {props.children}
-      <Aside></Aside>
+      <Aside>
+        <Link to={'/trending'}>Trending</Link>
+      </Aside>
     </Container>
   );
 }
