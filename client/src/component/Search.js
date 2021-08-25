@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BiSearchAlt } from 'react-icons/bi';
 
-const Box = styled.div`
+const Box = styled.form`
   height: 45px;
   width: 400px;
 
@@ -19,6 +19,10 @@ const Box = styled.div`
 
   margin-bottom: 5rem;
   margin-top: 5rem;
+
+  @media (max-width: 600px) {
+    width: 85%;
+  }
 `;
 const SearchBar = styled.input`
   margin: 0;
@@ -31,6 +35,11 @@ const SearchBar = styled.input`
   border: none;
   background: none;
   font-size: 25px;
+
+  @media (max-width: 600px) {
+    width: 85%;
+    padding-left: 1rem;
+  }
 `;
 const Button = styled.button`
   color: white;
@@ -44,12 +53,16 @@ const Button = styled.button`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  @media (max-width: 600px) {
+    width: 85%;
+  }
 `;
 
 const Search = props => {
   return (
     <Box>
-      <SearchBar onChange={props.onChange}>{props.children}</SearchBar>
+      <SearchBar onChange={props.onChange} placeholder='Search GIF'>{props.children}</SearchBar>
       <Button onClick={props.onClick}>
         {props.children}
         <BiSearchAlt />

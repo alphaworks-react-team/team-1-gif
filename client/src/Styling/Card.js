@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
+
 export const Card = styled.div`
   position: relative;
   display: inline-block;
-  /* width: 100px;
-  height: 100px; */
+
   border-radius: 5px;
   /* background-color: #fff; */
   /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); */
@@ -41,3 +41,5 @@ export const Card = styled.div`
     opacity: -1;
   }
 `;
+
+

@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
+//routes
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 //Components
 import Container from "./component/Container";
 import Search from "./component/Search";
@@ -19,6 +22,7 @@ function App() {
   const [giph, setGiph] = useState(null);
   const [test, setTest] = useState([]);
 
+  //trending
   useEffect(() => {
     axios
       .get("/api")
@@ -27,6 +31,14 @@ function App() {
     axios
       .get("/api/categories")
       .then((res) => setTest(res.data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  //random
+  useEffect(() => {
+    axios
+      .get(`/api/random`)
+      .then((res) => setRandom(res.data.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -47,6 +59,9 @@ function App() {
   return (
     <div className="glizzy-app">
       <Nav></Nav>
+
+      <RandomGif random={random} />
+
       <Search onClick={onClick} onChange={onChange}></Search>
       {giph && (
         <CarouselTest>
@@ -122,7 +137,7 @@ function App() {
           {giph &&
             giph.map((gif, index) => (
               <Card key={index}>
-                <img src={gif.images.fixed_height.url} alt='' />
+                <img src={gif.images.fixed_height.url} alt="" />
               </Card>
             ))}
         </Container>
