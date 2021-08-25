@@ -37,9 +37,13 @@ function App() {
 
   const onClick = (e) => {
     e.preventDefault();
+
     axios
       .get(`/api/search/?search=${search}`)
-      .then((res) => setGiph(res.data.data))
+      .then((res) => {
+        document.querySelector("#searchInput").value = "";
+        setGiph(res.data.data);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -49,18 +53,22 @@ function App() {
 
   return (
     <div className="glizzy-app">
-      <Nav/>
+      <Nav />
       <Search onClick={onClick} onChange={onChange}></Search>
       <Container>
-      <Switch> 
-        <Route exact path="/" component={ Home } />
-        <Route path="/trending">
-          <TrendingPage
-            giph={giph}
-            trending={trending}
-          />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route exact path="/">
+            <Home giph={giph} />
+          </Route>
+          <Route path="/trending">
+            <TrendingPage
+              giph={giph}
+              trending={trending}
+              categories={categories}
+              search={search}
+            />
+          </Route>
+        </Switch>
       </Container>
     </div>
   );
