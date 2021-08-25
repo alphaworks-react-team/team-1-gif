@@ -53,7 +53,11 @@ function App() {
       <Search onClick={onClick} onChange={onChange}></Search>
       <Container>
       <Switch> 
-        <Route exact path="/" component={ Home } />
+        <Route exact path="/">
+          <Home
+            giph={giph}
+          />
+        </Route>
         <Route path="/trending">
           <TrendingPage
             giph={giph}
