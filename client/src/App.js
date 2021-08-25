@@ -34,13 +34,6 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  //random
-  useEffect(() => {
-    axios
-      .get(`/api/random`)
-      .then((res) => setRandom(res.data.data))
-      .catch((err) => console.log(err));
-  }, []);
 
   const onClick = (e) => {
     e.preventDefault();
@@ -59,8 +52,6 @@ function App() {
   return (
     <div className="glizzy-app">
       <Nav></Nav>
-
-      <RandomGif random={random} />
 
       <Search onClick={onClick} onChange={onChange}></Search>
       {giph && (
