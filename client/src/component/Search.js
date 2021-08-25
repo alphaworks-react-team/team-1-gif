@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { BiSearchAlt } from 'react-icons/bi';
+import React from "react";
+import styled from "styled-components";
+import { BiSearchAlt } from "react-icons/bi";
 
 const Box = styled.form`
   height: 45px;
@@ -24,7 +24,7 @@ const Box = styled.form`
     width: 85%;
   }
 `;
-const SearchBar = styled.input`
+const SearchBar = styled.input.attrs({ id: "searchInput" })`
   margin: 0;
   padding: 0;
 
@@ -59,10 +59,12 @@ const Button = styled.button`
   }
 `;
 
-const Search = props => {
+const Search = (props) => {
   return (
     <Box>
-      <SearchBar onChange={props.onChange} placeholder='Search GIF'>{props.children}</SearchBar>
+      <SearchBar onChange={props.onChange} placeholder="Search GIF">
+        {props.children}
+      </SearchBar>
       <Button onClick={props.onClick}>
         {props.children}
         <BiSearchAlt />

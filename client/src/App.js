@@ -37,9 +37,13 @@ function App() {
 
   const onClick = (e) => {
     e.preventDefault();
+
     axios
       .get(`/api/search/?search=${search}`)
-      .then((res) => setGiph(res.data.data))
+      .then((res) => {
+        document.querySelector("#searchInput").value = "";
+        setGiph(res.data.data);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -57,7 +61,12 @@ function App() {
             <Home giph={giph} />
           </Route>
           <Route path="/trending">
-            <TrendingPage giph={giph} trending={trending} />
+            <TrendingPage
+              giph={giph}
+              trending={trending}
+              categories={categories}
+              search={search}
+            />
           </Route>
         </Switch>
       </Container>
