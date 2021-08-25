@@ -7,7 +7,7 @@ import styled from "styled-components";
 //Components
 import Container from "./component/Container";
 import Search from "./component/Search";
-import Nav from './Styling/Nav'
+import Nav from "./Styling/Nav";
 
 //Styled Components
 import { Card } from "./Styling/Card";
@@ -24,9 +24,10 @@ function App() {
       .get("/api")
       .then((res) => setTrending(res.data.data))
       .catch((err) => console.log(err));
-    // .get("/api/categories")
-    // .then((res) => setTest(res.data.data))
-    // .catch((err) => console.log(err));
+    axios
+      .get("/api/categories")
+      .then((res) => setTest(res.data.data))
+      .catch((err) => console.log(err));
   }, []);
 
   const onClick = (e) => {
@@ -44,27 +45,49 @@ function App() {
 
   console.log(trending);
   return (
-    <div className='glizzy-app'>
+    <div className="glizzy-app">
       <Nav></Nav>
       <Search onClick={onClick} onChange={onChange}></Search>
       <CarouselTest title="Trending">
-        {trending &&
-          trending.map((gif, index) => (
-            <div
-              style={{
-                display: "inline-block",
-                color: "white",
-                textAlign: "center",
-                padding: "14px",
-                textDecoration: "none",
-              }}
-              key={index}
-            >
-              <img src={gif.images.fixed_height.url} alt="" />
-            </div>
-          ))}
+        <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
+          Trending
+        </h3>
+        <div>
+          {trending &&
+            trending.map((gif, index) => (
+              <div
+                style={{
+                  display: "inline-block",
+                  padding: "10px",
+                }}
+                key={index}
+              >
+                <img src={gif.images.fixed_height.url} alt="" />
+              </div>
+            ))}
+        </div>
       </CarouselTest>
-      {!giph ? (
+      <CarouselTest>
+        <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
+          Categories
+        </h3>
+        <div>
+          {test &&
+            test.map((gif, index) => (
+              <div
+                style={{
+                  display: "inline-block",
+                  padding: "10px",
+                }}
+                key={index}
+              >
+                <h4 style={{ margin: 0 }}>{gif.name}</h4>
+                <img src={gif.gif.images.fixed_height.url} alt="" />
+              </div>
+            ))}
+        </div>
+      </CarouselTest>
+      {/* {!giph ? (
         <Container>
           {trending &&
             trending.map((gif, index) => (
@@ -82,7 +105,7 @@ function App() {
               </Card>
             ))}
         </Container>
-      )}
+      )} */}
     </div>
   );
 }
