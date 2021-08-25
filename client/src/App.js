@@ -48,6 +48,27 @@ function App() {
     <div className="glizzy-app">
       <Nav></Nav>
       <Search onClick={onClick} onChange={onChange}></Search>
+      {giph ? (
+        <CarouselTest>
+          <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
+            {giph}
+          </h3>
+          <div>
+            {giph &&
+              giph.map((gif, index) => (
+                <div
+                  style={{
+                    display: "inline-block",
+                    padding: "10px",
+                  }}
+                  key={index}
+                >
+                  <img src={gif.images.fixed_height.url} alt="" />
+                </div>
+              ))}
+          </div>
+        </CarouselTest>
+      ) : null}
       <CarouselTest title="Trending">
         <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
           Trending
