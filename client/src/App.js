@@ -19,6 +19,7 @@ function App() {
   const [giph, setGiph] = useState(null);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
+  const [randomGiph, setRandomGiph] = useState();
 
   //trending
   useEffect(() => {
@@ -29,6 +30,10 @@ function App() {
     axios
       .get("/api/categories")
       .then((res) => setCategories(res.data.data))
+      .catch((err) => console.log(err));
+    axios
+      .get('/api/randomGiph')
+      .then((res) => setRandomGiph(res.data.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -59,16 +64,20 @@ function App() {
   };
 
   return (
-    <div className="glizzy-app">
+    <div className='glizzy-app'>
       <Nav />
       <Container>
         <Switch>
-          <Route exact path="/">
-            <Home giph={giph} onClick={onClick} onChange={onChange}>
+          <Route exact path='/'>
+            <Home
+              giph={giph}
+              onClick={onClick}
+              onChange={onChange}
+              randomGiph={randomGiph}>
               <Search onClick={onClick} onChange={onChange}></Search>
             </Home>
           </Route>
-          <Route path="/trending">
+          <Route path='/trending'>
             <TrendingPage
               giph={giph}
               trending={trending}
