@@ -22,6 +22,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [giph, setGiph] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState();
 
   //trending
   useEffect(() => {
@@ -47,18 +48,29 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const onCategoryClick = (e, value) => {
+    e.preventDefault();
+    console.log(value);
+    axios
+      .get(`/api/search/?search=${value}`)
+      .then((res) => setCategory(res.data.data))
+      .catch((err) => console.log(err));
+  };
+
   const onChange = (e) => {
+    // console.log("e", e);
     setSearch(e.target.value);
   };
 
   return (
     <div className="glizzy-app">
       <Nav />
-      <Search onClick={onClick} onChange={onChange}></Search>
       <Container>
         <Switch>
           <Route exact path="/">
-            <Home giph={giph} />
+            <Home giph={giph} onClick={onClick} onChange={onChange}>
+              <Search onClick={onClick} onChange={onChange}></Search>
+            </Home>
           </Route>
           <Route path="/trending">
             <TrendingPage
@@ -66,6 +78,8 @@ function App() {
               trending={trending}
               categories={categories}
               search={search}
+              category={category}
+              onClick={onCategoryClick}
             />
           </Route>
         </Switch>

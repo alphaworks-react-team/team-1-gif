@@ -3,7 +3,14 @@ import Container from "./Container";
 import { Card } from "../Styling/Card";
 import CarouselTest from "../test/CarouselTest";
 
-const TrendingPage = ({ trending, giph, categories, search }) => {
+const TrendingPage = ({
+  trending,
+  giph,
+  categories,
+  search,
+  onClick,
+  category,
+}) => {
   return (
     <Container>
       {giph && (
@@ -54,6 +61,7 @@ const TrendingPage = ({ trending, giph, categories, search }) => {
           {categories &&
             categories.map((gif, index) => (
               <div
+                onClick={(e) => onClick(e, gif.name)}
                 style={{
                   display: "inline-block",
                   padding: "10px",
@@ -66,6 +74,28 @@ const TrendingPage = ({ trending, giph, categories, search }) => {
             ))}
         </div>
       </CarouselTest>
+      {/* <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
+          Categories
+        </h3> */}
+      {category && (
+        <CarouselTest>
+          <div>
+            {category &&
+              category.map((gif, index) => (
+                <div
+                  style={{
+                    display: "inline-block",
+                    padding: "10px",
+                  }}
+                  key={index}
+                >
+                  <h4 style={{ margin: 0 }}>{}</h4>
+                  <img src={gif.images.fixed_height.url} alt="" />
+                </div>
+              ))}
+          </div>
+        </CarouselTest>
+      )}
       {/* {!giph ? (
           <Container>
             {trending &&
