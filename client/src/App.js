@@ -12,12 +12,7 @@ import Search from "./component/Search";
 import Nav from "./Styling/Nav";
 import Home from "./component/Home";
 import TrendingPage from "./component/TrendingPage";
-
-import Profile from "./component/Profile"; //profile
-
-//Styled Components
-import { Card } from "./Styling/Card";
-import CarouselTest from "./test/CarouselTest";
+import Profile from "./component/Profile";
 
 function App() {
   const [trending, setTrending] = useState([]);

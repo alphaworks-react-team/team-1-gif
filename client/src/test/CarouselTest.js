@@ -8,14 +8,12 @@ const Scroll = styled.div`
   overflow: overlay;
   white-space: nowrap;
   width: 80vw;
-  // glass effect
   background: rgba(255, 255, 255, 0.25);
-  // box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 10px;
-  margin-bottom: 20px;
+  margin-top: 20px;
   ::-webkit-scrollbar {
     border-radius: 10px;
   }
@@ -26,20 +24,8 @@ const Scroll = styled.div`
   }
 `;
 
-const Title = styled.h4`
-  position: fixed;
-  margin: 0;
-  color: white;
-  margin-left: 10px;
-`;
-
-const CarouselTest = (props) => {
-  return (
-    <Scroll>
-      {/* <Title>{props.title}</Title> */}
-      {props.children}
-    </Scroll>
-  );
+const CarouselTest = ({ children }) => {
+  return <Scroll>{children}</Scroll>;
 };
 
 export default CarouselTest;
