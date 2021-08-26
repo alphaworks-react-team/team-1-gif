@@ -4,8 +4,9 @@ const Container = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin: 0 8rem 0 8rem;
-  margin-bottom: 5rem;
+  align-content: flex-start;
+
+  min-height: 100vh;
 `;
 
 export default Container;

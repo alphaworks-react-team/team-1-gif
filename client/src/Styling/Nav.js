@@ -44,7 +44,7 @@ const isActive = (history, path) => {
   }
 };
 
-const Nav = () => {
+const Nav = ({ history }) => {
   return (
     <Container>
       <Aside>
@@ -52,9 +52,10 @@ const Nav = () => {
           <CgProfile size="3em" color="white" />
         </Link>
       </Aside>
-
       <Text>
-        <Link to={"/"}>GIPHY APP</Link>
+        <Link style={{ textDecoration: "none", color: "white" }} to={"/"}>
+          GIPHY APP
+        </Link>
       </Text>
       <Aside>
         <Link to={"/trending"}>

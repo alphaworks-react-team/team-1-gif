@@ -69,4 +69,26 @@ router.get("/api/categories", async (req, res) => {
   }
 });
 
+const randomGiph = () => {
+  return new Promise(async (resolve, reject) => {
+    console.log('hello');
+    try {
+      const request = await axios.get(
+        `https://api.giphy.com/v1/gifs/random?api_key=${API}`
+      );
+      resolve(request.data);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+router.get('/api/randomGiph', async (req, res) => {
+  try {
+    res.json(await randomGiph(res));
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 module.exports = router;
