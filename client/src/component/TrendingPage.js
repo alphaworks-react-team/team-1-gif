@@ -1,39 +1,11 @@
 import React from "react";
 import Container from "./Container";
-import { Card } from "../Styling/Card";
 import CarouselTest from "../test/CarouselTest";
+import { RiHeartLine } from "react-icons/ri";
 
-const TrendingPage = ({
-  trending,
-  giph,
-  categories,
-  search,
-  onClick,
-  category,
-}) => {
+const TrendingPage = ({ trending, categories, onClick, category }) => {
   return (
     <Container>
-      {giph && (
-        <CarouselTest>
-          <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
-            You searched "{search}"
-          </h3>
-          <div>
-            {giph &&
-              giph.map((gif, index) => (
-                <div
-                  style={{
-                    display: "inline-block",
-                    padding: "10px",
-                  }}
-                  key={index}
-                >
-                  <img src={gif.images.fixed_height.url} alt="" />
-                </div>
-              ))}
-          </div>
-        </CarouselTest>
-      )}
       <CarouselTest title="Trending">
         <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
           Trending
@@ -49,6 +21,16 @@ const TrendingPage = ({
                 key={index}
               >
                 <img src={gif.images.fixed_height.url} alt="" />
+                <RiHeartLine
+                  style={{
+                    fill: "red",
+                    transform: "translateX(-35px)",
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                  size="2em"
+                />
               </div>
             ))}
         </div>
@@ -91,6 +73,13 @@ const TrendingPage = ({
                 >
                   <h4 style={{ margin: 0 }}>{}</h4>
                   <img src={gif.images.fixed_height.url} alt="" />
+                  <RiHeartLine
+                    style={{
+                      fill: "red",
+                      transform: "translateX(-35px)",
+                    }}
+                    size="2em"
+                  />
                 </div>
               ))}
           </div>

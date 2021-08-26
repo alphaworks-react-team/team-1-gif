@@ -1,7 +1,6 @@
 import React from "react";
 import Container from "./Container";
 import { Card } from "../Styling/Card";
-import Search from "./Search";
 
 const Home = ({ giph, children }) => {
   return (
