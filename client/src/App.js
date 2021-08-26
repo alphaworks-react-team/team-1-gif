@@ -20,6 +20,7 @@ function App() {
   const [giph, setGiph] = useState(null);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
+  const [favoriteGifs, setFavoriteGifs] = useState([]);
 
   //trending
   useEffect(() => {
@@ -31,6 +32,17 @@ function App() {
       .get("/api/categories")
       .then((res) => setCategories(res.data.data))
       .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    const favorites = localStorage.getItem("favorites");
+
+    if (favorites === null) {
+      setFavoriteGifs([]);
+      localStorage.setItem("favorites", JSON.stringify([]));
+    } else {
+      setFavoriteGifs(JSON.parse(favorites));
+    }
   }, []);
 
   const onClick = (e) => {
@@ -47,7 +59,6 @@ function App() {
 
   const onCategoryClick = (e, value) => {
     e.preventDefault();
-    console.log(value);
     axios
       .get(`/api/search/?search=${value}`)
       .then((res) => setCategory(res.data.data))
@@ -57,6 +68,13 @@ function App() {
   const onChange = (e) => {
     // console.log("e", e);
     setSearch(e.target.value);
+  };
+
+  const AddToFavoriteClick = (index) => {
+    const arr = [...favoriteGifs];
+    arr.push(trending[index]);
+    localStorage.setItem("favorites", JSON.stringify(arr));
+    setFavoriteGifs(arr);
   };
 
   return (
@@ -77,6 +95,7 @@ function App() {
               search={search}
               category={category}
               onClick={onCategoryClick}
+              AddToFavoriteClick={AddToFavoriteClick}
             />
           </Route>
           <Route path="/profile">
