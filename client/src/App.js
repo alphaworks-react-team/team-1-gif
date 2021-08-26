@@ -12,6 +12,7 @@ import Search from "./component/Search";
 import Nav from "./Styling/Nav";
 import Home from "./component/Home";
 import TrendingPage from "./component/TrendingPage";
+import Profile from "./component/Profile";
 
 function App() {
   const [trending, setTrending] = useState([]);
@@ -96,6 +97,9 @@ function App() {
               onClick={onCategoryClick}
               AddToFavoriteClick={AddToFavoriteClick}
             />
+          </Route>
+          <Route path="/profile">
+          <Profile favoriteGifs={favoriteGifs}/>
           </Route>
         </Switch>
       </Container>

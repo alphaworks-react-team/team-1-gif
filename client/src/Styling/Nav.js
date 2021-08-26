@@ -45,6 +45,7 @@ const Nav = (props) => {
       {props.children}
       <Aside>
         <Link to={"/trending"}>Trending</Link>
+        <Link to={"/profile"}>Profile</Link>
       </Aside>
     </Container>
   );
