@@ -34,9 +34,9 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
+  //favorites
   useEffect(() => {
     const favorites = localStorage.getItem("favorites");
-
     if (favorites === null) {
       setFavoriteGifs([]);
       localStorage.setItem("favorites", JSON.stringify([]));
@@ -44,6 +44,17 @@ function App() {
       setFavoriteGifs(JSON.parse(favorites));
     }
   }, []);
+
+  //delete
+  // useEffect(() => {
+  //   const deletes = localStorage.getItem("deletes");
+  //   if (deletes === null) {
+  //     setDeleteGifs([]);
+  //     localStorage.setItem("deletes", JSON.stringify([]));
+  //   } else {
+  //     setDeleteGifs(JSON.parse(deletes));
+  //   }
+  // }, []);
 
   const onClick = (e) => {
     e.preventDefault();
@@ -66,7 +77,6 @@ function App() {
   };
 
   const onChange = (e) => {
-    // console.log("e", e);
     setSearch(e.target.value);
   };
 
@@ -76,6 +86,16 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
+
+  const DeleteFavoriteClicks = (index) => {
+    console.log(index)
+    const arr = [...favoriteGifs];
+    arr.splice(index,1)
+    localStorage.removeItem("favorites", index, JSON.stringify(arr));
+    setFavoriteGifs(arr);
+  };
+
+  //NEEDS TO RENDER THE GIPHS THAT ARENT DELETED
 
   return (
     <div className="glizzy-app">
@@ -99,7 +119,9 @@ function App() {
             />
           </Route>
           <Route path="/profile">
-          <Profile favoriteGifs={favoriteGifs}/>
+            <Profile 
+            favoriteGifs={favoriteGifs}
+            DeleteFavoriteClicks={DeleteFavoriteClicks} />
           </Route>
         </Switch>
       </Container>

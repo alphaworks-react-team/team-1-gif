@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Card } from "../Styling/Card";
+import { BsTrash } from "react-icons/bs";
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +18,6 @@ const FavoritesContainer = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   margin-bottom: 5rem;
-
 `;
 
 const ProfilePic = styled.div`
@@ -28,19 +28,28 @@ const ProfilePic = styled.div`
   background-image: url("https://www.kindpng.com/picc/m/104-1046489_sadcat-meme-memes-sad-cat-crying-cat-meme.png");
   background-position: center;
   background-size: cover;
-  margin-bottom: 30px;
+  margin: 1rem 0 1rem 0;
 `;
 
-const Profile = ({ favoriteGifs }) => {
-
+const Profile = ({ favoriteGifs, DeleteFavoriteClicks }) => {
   return (
     <Container>
       <ProfilePic></ProfilePic>
       <FavoritesContainer>
         {favoriteGifs &&
           favoriteGifs.map((gif, index) => (
-            <Card key={index}>
+            <Card key={index} onClick={() => DeleteFavoriteClicks(index)}>
               <img src={gif.images.fixed_height.url} alt="" />
+              <BsTrash
+                style={{
+                  fill: "black",
+                  transform: "translateX(-35px)",
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
+                size="2em"
+              />
             </Card>
           ))}
       </FavoritesContainer>
