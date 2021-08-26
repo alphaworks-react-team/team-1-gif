@@ -42,7 +42,6 @@ function App() {
 
   useEffect(() => {
     const favorites = localStorage.getItem("favorites");
-
     if (favorites === null) {
       setFavoriteGifs([]);
       localStorage.setItem("favorites", JSON.stringify([]));

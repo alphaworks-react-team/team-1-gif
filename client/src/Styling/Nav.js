@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { CgTrending, CgProfile } from "react-icons/cg";
 
 const Container = styled.div`
   width: 100vw;
@@ -35,17 +36,31 @@ const Aside = styled.div`
   color: white;
 `;
 
-const Nav = (props) => {
+const isActive = (history, path) => {
+  if (history.location.pathname === path) {
+    return { color: "blue" };
+  } else {
+    return { color: "red" };
+  }
+};
+
+const Nav = ({ history }) => {
   return (
     <Container>
       <Aside>
-        <Link to={"/"}>Home</Link>
+        <Link to={"/profile"}>
+          <CgProfile size="3em" color="white" />
+        </Link>
       </Aside>
-      <Text>GIPHY APP</Text>
-      {props.children}
+      <Text>
+        <Link style={{ textDecoration: "none", color: "white" }} to={"/"}>
+          GIPHY APP
+        </Link>
+      </Text>
       <Aside>
-        <Link to={"/trending"}>Trending</Link>
-        <Link to={"/profile"}>Profile</Link>
+        <Link to={"/trending"}>
+          <CgTrending size="3em" color="white" />
+        </Link>
       </Aside>
     </Container>
   );
