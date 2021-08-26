@@ -13,6 +13,8 @@ import Nav from "./Styling/Nav";
 import Home from "./component/Home";
 import TrendingPage from "./component/TrendingPage";
 
+import Profile from "./component/Profile"; //profile
+
 //Styled Components
 import { Card } from "./Styling/Card";
 import CarouselTest from "./test/CarouselTest";
@@ -81,6 +83,9 @@ function App() {
               category={category}
               onClick={onCategoryClick}
             />
+          </Route>
+          <Route path="/profile">
+          <Profile />
           </Route>
         </Switch>
       </Container>
