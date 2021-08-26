@@ -3,7 +3,13 @@ import Container from "./Container";
 import CarouselTest from "../test/CarouselTest";
 import { RiHeartLine } from "react-icons/ri";
 
-const TrendingPage = ({ trending, categories, onClick, category }) => {
+const TrendingPage = ({
+  trending,
+  categories,
+  onClick,
+  category,
+  AddToFavoriteClick,
+}) => {
   return (
     <Container>
       <CarouselTest title="Trending">
@@ -19,6 +25,7 @@ const TrendingPage = ({ trending, categories, onClick, category }) => {
                   padding: "10px",
                 }}
                 key={index}
+                onClick={() => AddToFavoriteClick(index)}
               >
                 <img src={gif.images.fixed_height.url} alt="" />
                 <RiHeartLine
