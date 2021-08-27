@@ -87,25 +87,6 @@ const TrendingPage = ({
           </div>
         </CarouselTest>
       )}
-      {/* {!giph ? (
-          <Container>
-            {trending &&
-              trending.map((gif, index) => (
-                <Card key={index}>
-                  <img src={gif.images.fixed_height.url} alt="" />
-                </Card>
-              ))}
-          </Container>
-        ) : (
-          <Container>
-            {giph &&
-              giph.map((gif, index) => (
-                <Card key={index}>
-                  <img src={gif.images.fixed_height.url} alt="" />
-                </Card>
-              ))}
-          </Container>
-        )} */}
     </Container>
   );
 };
