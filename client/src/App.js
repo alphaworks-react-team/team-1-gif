@@ -23,7 +23,6 @@ function App() {
   const [randomGiph, setRandomGiph] = useState();
   const [favoriteGifs, setFavoriteGifs] = useState([]);
 
-
   //trending
   useEffect(() => {
     axios
@@ -35,7 +34,7 @@ function App() {
       .then((res) => setCategories(res.data.data))
       .catch((err) => console.log(err));
     axios
-      .get('/api/randomGiph')
+      .get("/api/randomGiph")
       .then((res) => setRandomGiph(res.data.data))
       .catch((err) => console.log(err));
   }, []);
@@ -104,20 +103,21 @@ function App() {
   //NEEDS TO RENDER THE GIPHS THAT ARENT DELETED
 
   return (
-    <div className='glizzy-app'>
+    <div className="glizzy-app">
       <Nav />
       <Container>
         <Switch>
-          <Route exact path='/'>
+          <Route exact path="/">
             <Home
               giph={giph}
               onClick={onClick}
               onChange={onChange}
-              randomGiph={randomGiph}>
+              randomGiph={randomGiph}
+            >
               <Search onClick={onClick} onChange={onChange}></Search>
             </Home>
           </Route>
-          <Route path='/trending'>
+          <Route path="/trending">
             <TrendingPage
               giph={giph}
               trending={trending}

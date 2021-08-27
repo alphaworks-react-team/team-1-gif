@@ -32,9 +32,6 @@ const TrendingPage = ({
                   style={{
                     fill: "red",
                     transform: "translateX(-35px)",
-                    "&:hover": {
-                      cursor: "pointer",
-                    },
                   }}
                   size="2em"
                 />
@@ -63,15 +60,13 @@ const TrendingPage = ({
             ))}
         </div>
       </CarouselTest>
-      {/* <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
-          Categories
-        </h3> */}
       {category && (
         <CarouselTest>
           <div>
             {category &&
               category.map((gif, index) => (
                 <div
+                  onClick={(e) => onClick(e, gif.name)}
                   style={{
                     display: "inline-block",
                     padding: "10px",
