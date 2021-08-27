@@ -75,6 +75,7 @@ function App() {
   };
 
   const AddToFavoriteClick = (index) => {
+    console.log("clicked")
     const arr = [...favoriteGifs];
     arr.push(trending[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
@@ -102,6 +103,8 @@ function App() {
               onClick={onClick}
               onChange={onChange}
               randomGiph={randomGiph}
+              AddToFavoriteClick={AddToFavoriteClick}
+
             >
               <Search onClick={onClick} onChange={onChange}></Search>
             </Home>
