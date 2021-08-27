@@ -2,6 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { BiSearchAlt } from "react-icons/bi";
 
+const Container = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Box = styled.form`
   height: 45px;
   width: 400px;
@@ -61,15 +68,17 @@ const Button = styled.button`
 
 const Search = (props) => {
   return (
-    <Box>
-      <SearchBar onChange={props.onChange} placeholder="Search GIF">
-        {props.children}
-      </SearchBar>
-      <Button onClick={props.onClick}>
-        {props.children}
-        <BiSearchAlt />
-      </Button>
-    </Box>
+    <Container>
+      <Box>
+        <SearchBar onChange={props.onChange} placeholder='Search GIF'>
+          {props.children}
+        </SearchBar>
+        <Button onClick={props.onClick}>
+          {props.children}
+          <BiSearchAlt />
+        </Button>
+      </Box>
+    </Container>
   );
 };
 

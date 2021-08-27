@@ -3,7 +3,13 @@ import Container from "./Container";
 import CarouselTest from "../test/CarouselTest";
 import { RiHeartLine } from "react-icons/ri";
 
-const TrendingPage = ({ trending, categories, onClick, category }) => {
+const TrendingPage = ({
+  trending,
+  categories,
+  onClick,
+  category,
+  AddToFavoriteClick,
+}) => {
   return (
     <Container>
       <CarouselTest title="Trending">
@@ -19,15 +25,13 @@ const TrendingPage = ({ trending, categories, onClick, category }) => {
                   padding: "10px",
                 }}
                 key={index}
+                onClick={() => AddToFavoriteClick(index)}
               >
                 <img src={gif.images.fixed_height.url} alt="" />
                 <RiHeartLine
                   style={{
                     fill: "red",
                     transform: "translateX(-35px)",
-                    "&:hover": {
-                      cursor: "pointer",
-                    },
                   }}
                   size="2em"
                 />
@@ -56,15 +60,13 @@ const TrendingPage = ({ trending, categories, onClick, category }) => {
             ))}
         </div>
       </CarouselTest>
-      {/* <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
-          Categories
-        </h3> */}
       {category && (
         <CarouselTest>
           <div>
             {category &&
               category.map((gif, index) => (
                 <div
+                  onClick={(e) => onClick(e, gif.name)}
                   style={{
                     display: "inline-block",
                     padding: "10px",
