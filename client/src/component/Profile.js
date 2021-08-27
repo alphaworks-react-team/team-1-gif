@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+// import Login from "../component/Login"
 import { Card } from "../Styling/Card";
 import { BsTrash } from "react-icons/bs";
 
@@ -36,6 +37,7 @@ const ProfilePic = styled.div`
 const Profile = ({ favoriteGifs, DeleteFavoriteClicks }) => {
   return (
     <Container>
+      {/* <Login /> */}
       <ProfilePic></ProfilePic>
       <FavoritesContainer>
         {favoriteGifs &&

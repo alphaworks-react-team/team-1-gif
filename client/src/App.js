@@ -13,6 +13,7 @@ import Nav from "./Styling/Nav";
 import Home from "./component/Home";
 import TrendingPage from "./component/TrendingPage";
 import Profile from "./component/Profile";
+import Login from "./component/Login"
 
 function App() {
   const [trending, setTrending] = useState([]);
@@ -22,6 +23,22 @@ function App() {
   const [category, setCategory] = useState();
   const [randomGiph, setRandomGiph] = useState();
   const [favoriteGifs, setFavoriteGifs] = useState([]);
+  const [user, setUser] = useState('')
+  const [password, setPassword] = useState('')
+  const [auth, setAuth] = useState(false)
+
+  const getUser = (e) => {
+    setUser(e.target.value)
+  }
+
+  const getPassword = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const getAuth = (e) => {
+    e.preventDefault()
+    if (user === 'Ari' && password === 'ari') setAuth(true)
+  }
 
   //trending
   useEffect(() => {
@@ -75,7 +92,9 @@ function App() {
   };
 
   const AddToFavoriteClick = (index) => {
-    console.log("clicked")
+    if (auth === false) {
+      return alert('You NEED to be logged in')
+    }
     const arr = [...favoriteGifs];
     arr.push(trending[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
@@ -93,23 +112,23 @@ function App() {
   };
 
   return (
-    <div className="glizzy-app">
+    <div className='glizzy-app'>
       <Nav />
       <Container>
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Home
               giph={giph}
               onClick={onClick}
               onChange={onChange}
               randomGiph={randomGiph}
               AddToFavoriteClick={AddToFavoriteClick}
-
             >
+              randomGiph={randomGiph}>
               <Search onClick={onClick} onChange={onChange}></Search>
             </Home>
           </Route>
-          <Route path="/trending">
+          <Route path='/trending'>
             <TrendingPage
               giph={giph}
               trending={trending}
@@ -120,11 +139,22 @@ function App() {
               AddToFavoriteClick={AddToFavoriteClick}
             />
           </Route>
-          <Route path="/profile">
-            <Profile
-              favoriteGifs={favoriteGifs}
-              DeleteFavoriteClicks={DeleteFavoriteClicks}
-            />
+          <Route path='/profile'>
+            {!auth ? (
+              <Login
+                user={user}
+                getUser={getUser}
+                password={password}
+                getPassword={getPassword}
+                auth={auth}
+                getAuth={getAuth}
+              />
+            ) : (
+              <Profile
+                favoriteGifs={favoriteGifs}
+                DeleteFavoriteClicks={DeleteFavoriteClicks}
+              />
+            )}
           </Route>
         </Switch>
       </Container>
