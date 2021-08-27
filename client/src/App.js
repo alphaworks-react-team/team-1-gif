@@ -50,17 +50,6 @@ function App() {
     }
   }, []);
 
-  //delete
-  // useEffect(() => {
-  //   const deletes = localStorage.getItem("deletes");
-  //   if (deletes === null) {
-  //     setDeleteGifs([]);
-  //     localStorage.setItem("deletes", JSON.stringify([]));
-  //   } else {
-  //     setDeleteGifs(JSON.parse(deletes));
-  //   }
-  // }, []);
-
   const onClick = (e) => {
     e.preventDefault();
 
@@ -101,8 +90,6 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(storageArray));
     setFavoriteGifs(arr);
   };
-
-  //NEEDS TO RENDER THE GIPHS THAT ARENT DELETED
 
   return (
     <div className="glizzy-app">

@@ -5,10 +5,11 @@ import { BsTrash } from "react-icons/bs";
 
 const Container = styled.div`
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: center;
   margin: 0 8rem 0 8rem;
   margin-bottom: 5rem;
+  align-items: center;
 `;
 
 const FavoritesContainer = styled.div`
@@ -22,6 +23,7 @@ const FavoritesContainer = styled.div`
 
 const ProfilePic = styled.div`
   display: flex;
+
   width: 150px;
   height: 150px;
   border-radius: 50%;
