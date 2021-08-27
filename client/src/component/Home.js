@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card } from '../Styling/Card';
-import styled from 'styled-components';
+import React from "react";
+import { Card } from "../Styling/Card";
+import styled from "styled-components";
 
 const Main = styled.div`
   display: flex;
@@ -21,19 +21,19 @@ const RandomGiph = styled.div`
   font-weight: bold;
 `;
 
-const Home = ({ giph, randomGiph, children }) => {
+const Home = ({ giph, randomGiph, AddToFavoriteClickFromSearch, children }) => {
   return (
     <Main>
       {children}
       {!giph ? (
         <RandomGiph>
           Random Gliphy Yo!
-          <img src={randomGiph?.images.original.url} alt='' />
+          <img src={randomGiph?.images.original.url} alt="" />
         </RandomGiph>
       ) : (
         giph.map((gif, index) => (
-          <Card key={index}>
-            <img src={gif.images.fixed_height.url} alt='' />
+          <Card onClick={() => AddToFavoriteClickFromSearch(index)} key={index}>
+            <img src={gif.images.fixed_height.url} alt="" />
           </Card>
         ))
       )}

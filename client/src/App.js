@@ -86,8 +86,31 @@ function App() {
   };
 
   const AddToFavoriteClick = (index) => {
+    console.log(index);
     const arr = [...favoriteGifs];
+    console.log(arr);
     arr.push(trending[index]);
+    // arr.push(category[index]);
+    localStorage.setItem("favorites", JSON.stringify(arr));
+    setFavoriteGifs(arr);
+  };
+
+  const AddToFavoriteClickFromCategory = (index) => {
+    console.log(index);
+    const arr = [...favoriteGifs];
+    console.log(arr);
+    arr.push(category[index]);
+    // arr.push(category[index]);
+    localStorage.setItem("favorites", JSON.stringify(arr));
+    setFavoriteGifs(arr);
+  };
+
+  const AddToFavoriteClickFromSearch = (index) => {
+    console.log(index);
+    const arr = [...favoriteGifs];
+    console.log(arr);
+    arr.push(giph[index]);
+    // arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
@@ -115,6 +138,7 @@ function App() {
               onClick={onClick}
               onChange={onChange}
               randomGiph={randomGiph}
+              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
             >
               <Search onClick={onClick} onChange={onChange}></Search>
             </Home>
@@ -128,6 +152,7 @@ function App() {
               category={category}
               onClick={onCategoryClick}
               AddToFavoriteClick={AddToFavoriteClick}
+              AddToFavoriteClickFromCategory={AddToFavoriteClickFromCategory}
             />
           </Route>
           <Route path="/profile">
