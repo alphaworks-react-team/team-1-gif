@@ -13,18 +13,15 @@ const Container = styled.div`
 const Box = styled.form`
   height: 45px;
   width: 400px;
-
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   //margin-bottom: 5rem;
   margin-top: 5rem;
 
@@ -35,10 +32,8 @@ const Box = styled.form`
 const SearchBar = styled.input.attrs({ id: "searchInput" })`
   margin: 0;
   padding: 0;
-
   height: 45px;
   width: 300px;
-
   outline: none;
   border: none;
   background: none;
@@ -67,18 +62,29 @@ const Button = styled.button`
   }
 `;
 
-const Search = (props) => {
+const Error = styled.p`
+  margin: 0;
+`;
+
+const Search = ({ error, onChange, onClick, children }) => {
   return (
     <Container>
       <Box>
-        <SearchBar onChange={props.onChange} placeholder='Search GIF' required>
-          {props.children}
+        <SearchBar onChange={onChange} placeholder='Search GIF' required>
+          {children}
         </SearchBar>
-        <Button onClick={props.onClick}>
-          {props.children}
+        <Button onClick={onClick}>
+          {children}
           <BiSearchAlt />
         </Button>
       </Box>
+      <Error>
+        {error ? (
+          <p>Type Something!</p>
+        ) : (
+          null
+        )}
+      </Error>
     </Container>
   );
 };

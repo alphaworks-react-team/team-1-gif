@@ -23,6 +23,8 @@ function App() {
   const [randomGiph, setRandomGiph] = useState();
   const [favoriteGifs, setFavoriteGifs] = useState([]);
 
+  const [error, setError] = useState(false);
+
   //trending
   useEffect(() => {
     axios
@@ -63,6 +65,12 @@ function App() {
 
   const onClick = (e) => {
     e.preventDefault();
+    if(search === '') {
+      setError(true)
+      setGiph(null)
+      return
+    }
+    setError(false)
     axios
       .get(`/api/search/?search=${search}`)
       .then((res) => {
@@ -70,6 +78,7 @@ function App() {
         setGiph(res.data.data);
       })
       .catch((err) => console.log(err));
+    setSearch('')
   };
 
   const onCategoryClick = (e, value) => {
@@ -81,12 +90,8 @@ function App() {
   };
 
   const onChange = (e) => {
-    if (e.target.value === '' || e.target.value === null) {
-      console.log('omg')
-    } else {
-      setSearch(e.target.value);
-    }
-    
+    console.log(e.target.value)
+    setSearch(e.target.value);
   };
 
   const AddToFavoriteClick = (index) => {
@@ -120,7 +125,7 @@ function App() {
               onChange={onChange}
               randomGiph={randomGiph}
             >
-              <Search onClick={onClick} onChange={onChange}></Search>
+              <Search onClick={onClick} onChange={onChange} error={error}></Search>
             </Home>
           </Route>
           <Route path="/trending">
