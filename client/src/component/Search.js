@@ -7,6 +7,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
 `;
 
 const Box = styled.form`
@@ -24,7 +25,7 @@ const Box = styled.form`
   justify-content: center;
   align-items: center;
 
-  margin-bottom: 5rem;
+  //margin-bottom: 5rem;
   margin-top: 5rem;
 
   @media (max-width: 600px) {
@@ -70,7 +71,7 @@ const Search = (props) => {
   return (
     <Container>
       <Box>
-        <SearchBar onChange={props.onChange} placeholder='Search GIF'>
+        <SearchBar onChange={props.onChange} placeholder='Search GIF' required>
           {props.children}
         </SearchBar>
         <Button onClick={props.onClick}>

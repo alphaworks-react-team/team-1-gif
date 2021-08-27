@@ -63,7 +63,6 @@ function App() {
 
   const onClick = (e) => {
     e.preventDefault();
-
     axios
       .get(`/api/search/?search=${search}`)
       .then((res) => {
@@ -82,7 +81,12 @@ function App() {
   };
 
   const onChange = (e) => {
-    setSearch(e.target.value);
+    if (e.target.value === '' || e.target.value === null) {
+      console.log('omg')
+    } else {
+      setSearch(e.target.value);
+    }
+    
   };
 
   const AddToFavoriteClick = (index) => {
