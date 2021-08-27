@@ -93,10 +93,12 @@ function App() {
   };
 
   const DeleteFavoriteClicks = (index) => {
-    console.log(index)
+    console.log(index);
     const arr = [...favoriteGifs];
-    arr.splice(index,1)
-    localStorage.removeItem("favorites", index, JSON.stringify(arr));
+    arr.splice(index, 1);
+    const storageArray = JSON.parse(localStorage.getItem("favorites"));
+    storageArray.splice(index, 1);
+    localStorage.setItem("favorites", JSON.stringify(storageArray));
     setFavoriteGifs(arr);
   };
 
@@ -129,9 +131,10 @@ function App() {
             />
           </Route>
           <Route path="/profile">
-            <Profile 
-            favoriteGifs={favoriteGifs}
-            DeleteFavoriteClicks={DeleteFavoriteClicks} />
+            <Profile
+              favoriteGifs={favoriteGifs}
+              DeleteFavoriteClicks={DeleteFavoriteClicks}
+            />
           </Route>
         </Switch>
       </Container>
