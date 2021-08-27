@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { CgTrending, CgProfile } from "react-icons/cg";
 
@@ -38,9 +38,9 @@ const Aside = styled.div`
 
 const isActive = (history, path) => {
   if (history.location.pathname === path) {
-    return { color: "blue" };
+    return { color: "#FF67E7", textDecoration: "none" };
   } else {
-    return { color: "red" };
+    return { color: "white", textDecoration: "none" };
   }
 };
 
@@ -48,22 +48,30 @@ const Nav = ({ history }) => {
   return (
     <Container>
       <Aside>
-        <Link to={"/profile"}>
-          <CgProfile size="3em" color="white" />
+        <Link to={"/profile"} style={isActive(history, "/profile")}>
+          <CgProfile
+            style={isActive(history, "/profile")}
+            size="3em"
+            color="white"
+          />
         </Link>
       </Aside>
       <Text>
-        <Link style={{ textDecoration: "none", color: "white" }} to={"/"}>
+        <Link style={isActive(history, "/")} to={"/"}>
           GIPHY APP
         </Link>
       </Text>
       <Aside>
         <Link to={"/trending"}>
-          <CgTrending size="3em" color="white" />
+          <CgTrending
+            style={isActive(history, "/trending")}
+            size="3em"
+            color="white"
+          />
         </Link>
       </Aside>
     </Container>
   );
 };
 
-export default Nav;
+export default withRouter(Nav);
