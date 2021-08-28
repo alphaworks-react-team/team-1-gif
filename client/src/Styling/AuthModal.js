@@ -2,14 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-height: 400px;
-width: 400px;
+  height: 425px;
+  width: 425px;
 
-z-index: 5;
+  z-index: 5;
 
-top: 100;
-position: absolute;
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+
+  top: 100;
+  position: absolute;
+`;
 
 const AuthModal = () => {
   return (
