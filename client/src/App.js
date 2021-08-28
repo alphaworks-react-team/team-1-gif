@@ -51,6 +51,7 @@ function App() {
     if (authErr) {
       return <AuthModal/>;
     } return null
+
   };
 
   //trending
@@ -120,8 +121,31 @@ function App() {
       return alert('You NEED to be logged in');
     }
     const arr = [...favoriteGifs];
+    console.log(arr);
     arr.push(trending[index]);
-    localStorage.setItem('favorites', JSON.stringify(arr));
+
+    // arr.push(category[index]);
+    localStorage.setItem("favorites", JSON.stringify(arr));
+    setFavoriteGifs(arr);
+  };
+
+  const AddToFavoriteClickFromCategory = (index) => {
+    console.log(index);
+    const arr = [...favoriteGifs];
+    console.log(arr);
+    arr.push(category[index]);
+    // arr.push(category[index]);
+    localStorage.setItem("favorites", JSON.stringify(arr));
+    setFavoriteGifs(arr);
+  };
+
+  const AddToFavoriteClickFromSearch = (index) => {
+    console.log(index);
+    const arr = [...favoriteGifs];
+    console.log(arr);
+    arr.push(giph[index]);
+    // arr.push(category[index]);
+    localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
@@ -138,20 +162,22 @@ function App() {
   //NEEDS TO RENDER THE GIPHS THAT ARENT DELETED
 
   return (
-    <div className='glizzy-app'>
+    <div className="glizzy-app">
       <Nav />
       <Container>
         <Switch>
-          <Route exact path='/'>
+          <Route exact path="/">
             <Home
               giph={giph}
               onClick={onClick}
               onChange={onChange}
-              randomGiph={randomGiph}>
+              randomGiph={randomGiph}
+              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
+            >
               <Search onClick={onClick} onChange={onChange}></Search>
             </Home>
           </Route>
-          <Route path='/trending'>
+          <Route path="/trending">
             <TrendingPage
               giph={giph}
               trending={trending}
@@ -160,10 +186,13 @@ function App() {
               category={category}
               onClick={onCategoryClick}
               AddToFavoriteClick={AddToFavoriteClick}
+              AddToFavoriteClickFromCategory={AddToFavoriteClickFromCategory}
             />
           </Route>
+
           <Route path='/profile'>
             {showErr(authErr)}
+
             {!auth ? (
               <Login
                 user={user}
