@@ -14,6 +14,7 @@ import Home from "./component/Home";
 import TrendingPage from "./component/TrendingPage";
 import Profile from "./component/Profile";
 import Login from "./component/Login";
+import AuthModal from "./Styling/AuthModal";
 
 function App() {
   const [trending, setTrending] = useState([]);
@@ -26,7 +27,10 @@ function App() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [auth, setAuth] = useState(false);
+  const [authErr, setAuthErr] = useState(false);
+  // const [toggleFollow, setToggleFollow] = useState(false)
 
+  //user auth
   const getUser = (e) => {
     setUser(e.target.value);
   };
@@ -37,7 +41,19 @@ function App() {
 
   const getAuth = (e) => {
     e.preventDefault();
-    if (user === "Ari" && password === "ari") setAuth(true);
+    if (user !== "Ari" && password !== "ari") {
+      setAuthErr(true);
+    } else if (user === "Ari" && password === "ari") {
+      setAuthErr(false);
+      setAuth(true);
+    }
+  };
+
+  const showErr = (authErr) => {
+    if (authErr) {
+      return <AuthModal />;
+    }
+    return null;
   };
 
   //trending
@@ -67,6 +83,7 @@ function App() {
     }
   }, []);
 
+//search
   const onClick = (e) => {
     e.preventDefault();
 
@@ -78,7 +95,7 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-
+//categories
   const onCategoryClick = (e, value) => {
     e.preventDefault();
     axios
@@ -91,14 +108,15 @@ function App() {
     setSearch(e.target.value);
   };
 
+  //Add to Favorites
   const AddToFavoriteClick = (index) => {
-    console.log(index);
     if (auth === false) {
       return alert("You NEED to be logged in");
     }
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(trending[index]);
+
     // arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
@@ -123,7 +141,7 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
-
+//Delete from favorites
   const DeleteFavoriteClicks = (index) => {
     console.log(index);
     const arr = [...favoriteGifs];
@@ -133,6 +151,11 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(storageArray));
     setFavoriteGifs(arr);
   };
+
+  //toggle Follow for profile follow button... ignore this
+  // const handleFollowToggle = () =>{
+  //  setToggleFollow(!toggleFollow)
+  // }
 
   return (
     <div className="glizzy-app">
@@ -162,7 +185,10 @@ function App() {
               AddToFavoriteClickFromCategory={AddToFavoriteClickFromCategory}
             />
           </Route>
+
           <Route path="/profile">
+            {showErr(authErr)}
+
             {!auth ? (
               <Login
                 user={user}
@@ -176,6 +202,8 @@ function App() {
               <Profile
                 favoriteGifs={favoriteGifs}
                 DeleteFavoriteClicks={DeleteFavoriteClicks}
+                // handleFollowToggle={handleFollowToggle} 
+                // toggleFollow={toggleFollow}
               />
             )}
           </Route>

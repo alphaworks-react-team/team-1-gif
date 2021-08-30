@@ -31,6 +31,7 @@ const Box = styled.form`
     width: 85%;
   }
 `;
+
 const SearchBar = styled.input.attrs({ id: "searchInput" })`
   margin: 0;
   padding: 0;
@@ -48,6 +49,7 @@ const SearchBar = styled.input.attrs({ id: "searchInput" })`
     padding-left: 1rem;
   }
 `;
+
 const Button = styled.button`
   color: white;
   height: 45px;
