@@ -49,9 +49,9 @@ function App() {
 
   const showErr = authErr => {
     if (authErr) {
-      return <AuthModal/>;
-    } return null
-
+      return <AuthModal setAuthErr={setAuthErr} />;
+    }
+    return null;
   };
 
   //trending
@@ -125,27 +125,27 @@ function App() {
     arr.push(trending[index]);
 
     // arr.push(category[index]);
-    localStorage.setItem("favorites", JSON.stringify(arr));
+    localStorage.setItem('favorites', JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
-  const AddToFavoriteClickFromCategory = (index) => {
+  const AddToFavoriteClickFromCategory = index => {
     console.log(index);
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(category[index]);
     // arr.push(category[index]);
-    localStorage.setItem("favorites", JSON.stringify(arr));
+    localStorage.setItem('favorites', JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
-  const AddToFavoriteClickFromSearch = (index) => {
+  const AddToFavoriteClickFromSearch = index => {
     console.log(index);
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(giph[index]);
     // arr.push(category[index]);
-    localStorage.setItem("favorites", JSON.stringify(arr));
+    localStorage.setItem('favorites', JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
@@ -162,22 +162,21 @@ function App() {
   //NEEDS TO RENDER THE GIPHS THAT ARENT DELETED
 
   return (
-    <div className="glizzy-app">
+    <div className='glizzy-app'>
       <Nav />
       <Container>
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Home
               giph={giph}
               onClick={onClick}
               onChange={onChange}
               randomGiph={randomGiph}
-              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
-            >
+              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}>
               <Search onClick={onClick} onChange={onChange}></Search>
             </Home>
           </Route>
-          <Route path="/trending">
+          <Route path='/trending'>
             <TrendingPage
               giph={giph}
               trending={trending}
