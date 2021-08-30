@@ -13,7 +13,7 @@ const Scroll = styled.div`
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 30px;
   ::-webkit-scrollbar {
     border-radius: 10px;
   }

@@ -24,6 +24,9 @@ function App() {
   const [category, setCategory] = useState();
   const [randomGiph, setRandomGiph] = useState();
   const [favoriteGifs, setFavoriteGifs] = useState([]);
+
+  const [searchError, setSearchError] = useState('');
+
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [auth, setAuth] = useState(false);
@@ -94,15 +97,33 @@ function App() {
 
   const onClick = e => {
     e.preventDefault();
-
+    let isValid = validate();
+    if( isValid ) {
+      console.log('is valid')
+    } else {
+      setSearchError('')
+    }
     axios
       .get(`/api/search/?search=${search}`)
       .then(res => {
         document.querySelector('#searchInput').value = '';
         setGiph(res.data.data);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
+    setSearch('')
   };
+
+const validate = () => {
+  let searchError = '';
+  if(search === '') {
+    searchError = 'YOLANDA';
+    setSearchError(searchError)
+  }
+  if(!searchError) {
+    return false;
+  }
+  return true;
+}
 
   const onCategoryClick = (e, value) => {
     e.preventDefault();
@@ -134,8 +155,7 @@ function App() {
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(category[index]);
-    // arr.push(category[index]);
-    localStorage.setItem('favorites', JSON.stringify(arr));
+    localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
@@ -144,8 +164,7 @@ function App() {
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(giph[index]);
-    // arr.push(category[index]);
-    localStorage.setItem('favorites', JSON.stringify(arr));
+    localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
@@ -159,8 +178,6 @@ function App() {
     setFavoriteGifs(arr);
   };
 
-  //NEEDS TO RENDER THE GIPHS THAT ARENT DELETED
-
   return (
     <div className='glizzy-app'>
       <Nav />
@@ -172,8 +189,10 @@ function App() {
               onClick={onClick}
               onChange={onChange}
               randomGiph={randomGiph}
-              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}>
-              <Search onClick={onClick} onChange={onChange}></Search>
+              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
+            >
+              <Search onClick={onClick} onChange={onChange} required></Search>
+              <p>{searchError}</p>
             </Home>
           </Route>
           <Route path='/trending'>
