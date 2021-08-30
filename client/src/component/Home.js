@@ -1,7 +1,6 @@
-import React from 'react';
-import { Card } from '../Styling/Card';
-import styled from 'styled-components';
-import { RiHeartLine } from "react-icons/ri";
+import React from "react";
+import { Card } from "../Styling/Card";
+import styled from "styled-components";
 
 const Main = styled.div`
   display: flex;
@@ -22,30 +21,19 @@ const RandomGiph = styled.div`
   font-weight: bold;
 `;
 
-const Home = ({ giph, randomGiph, children, AddToFavoriteClick }) => {
+const Home = ({ giph, randomGiph, AddToFavoriteClickFromSearch, children }) => {
   return (
     <Main>
       {children}
       {!giph ? (
         <RandomGiph>
           Random Gliphy Yo!
-          <img src={randomGiph?.images.original.url} alt='' />
-          
+          <img src={randomGiph?.images.original.url} alt="" />
         </RandomGiph>
       ) : (
         giph.map((gif, index) => (
-          <Card 
-          key={index} 
-          onClick={() => AddToFavoriteClick(index)} 
-          >
-            <img src={gif.images.fixed_height.url} alt='' />
-            <RiHeartLine
-            style={{
-              fill: "red",
-              transform: "translateX(-35px)",
-            }}
-            size="2em"
-          />
+          <Card onClick={() => AddToFavoriteClickFromSearch(index)} key={index}>
+            <img src={gif.images.fixed_height.url} alt="" />
           </Card>
         ))
       )}
