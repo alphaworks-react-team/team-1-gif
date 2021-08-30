@@ -9,6 +9,7 @@ const TrendingPage = ({
   onClick,
   category,
   AddToFavoriteClick,
+  AddToFavoriteClickFromCategory,
 }) => {
   return (
     <Container>
@@ -66,7 +67,7 @@ const TrendingPage = ({
             {category &&
               category.map((gif, index) => (
                 <div
-                  onClick={(e) => onClick(e, gif.name)}
+                  onClick={(e) => AddToFavoriteClickFromCategory(index)}
                   style={{
                     display: "inline-block",
                     padding: "10px",

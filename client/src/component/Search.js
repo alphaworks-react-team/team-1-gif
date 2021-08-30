@@ -8,6 +8,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
+  margin-bottom: 5rem;
 `;
 
 const Box = styled.form`
@@ -22,13 +23,14 @@ const Box = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  //margin-bottom: 5rem;
+  /* margin-bottom: 3rem; */
   margin-top: 5rem;
 
   @media (max-width: 600px) {
     width: 85%;
   }
 `;
+
 const SearchBar = styled.input.attrs({ id: "searchInput" })`
   margin: 0;
   padding: 0;
@@ -44,6 +46,7 @@ const SearchBar = styled.input.attrs({ id: "searchInput" })`
     padding-left: 1rem;
   }
 `;
+
 const Button = styled.button`
   color: white;
   height: 45px;
@@ -62,15 +65,11 @@ const Button = styled.button`
   }
 `;
 
-const Error = styled.p`
-  margin: 0;
-`;
-
 const Search = ({ error, onChange, onClick, children }) => {
   return (
     <Container>
       <Box>
-        <SearchBar onChange={onChange} placeholder='Search GIF' required>
+        <SearchBar onChange={onChange} placeholder='Search GIF'>
           {children}
         </SearchBar>
         <Button onClick={onClick}>
@@ -78,13 +77,6 @@ const Search = ({ error, onChange, onClick, children }) => {
           <BiSearchAlt />
         </Button>
       </Box>
-      <Error>
-        {error ? (
-          <p>Type Something!</p>
-        ) : (
-          null
-        )}
-      </Error>
     </Container>
   );
 };
