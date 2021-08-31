@@ -4,23 +4,25 @@ import CarouselTest from "../test/CarouselTest";
 import { RiHeartLine } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
 import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ModalBackground = styled.div`
-  height: 100vh;
-  width: 100vw;
-
-  z-index: 1;
+  z-index: 10;
 
   display: flex;
   flex-flow: wrap column;
   justify-content: center;
   align-items: center;
 
-  position: absolute;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
 
   background-color: rgb(51, 51, 51, 0.8);
-  padding-bottom: 5rem;
+  background-cover: fill;
+  // padding-bottom: 5rem;
 `;
 
 const Modal = styled.div`
@@ -53,6 +55,23 @@ const CancelIcon = styled.div`
 
   cursor: pointer;
 
+  :hover {
+    color: #ff67e7;
+  }
+`;
+
+const HeartIcon = styled.div`
+  height: 30px;
+  width: 30px;
+  color: #ff67e7;
+  cursor: pointer;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  transform: translateY(-35px);
+  border-radius: 50% !important ;
   :hover {
     color: #ff67e7;
   }
@@ -124,16 +143,15 @@ const TrendingPage = ({
                 onClick={() => AddToFavoriteClick(index)}
               >
                 <img src={gif.images.fixed_height.url} alt="" />
-                <RiHeartLine
-                  style={{
-                    fill: "red",
-                    transform: "translateX(-35px)",
-                  }}
-                  onClick={(e) => {
-                    e.target.style.fill = "#FF67E7";
-                  }}
-                  size="2em"
-                />
+                <HeartIcon>
+                  <RiHeartLine
+                    onClick={(e) => {
+                      e.target.style.background = "#FF67E7";
+                      e.target.style.color = "white";
+                    }}
+                    size="2em"
+                  />
+                </HeartIcon>
               </div>
             ))}
         </div>
@@ -174,16 +192,15 @@ const TrendingPage = ({
                 >
                   <h4 style={{ margin: 0 }}>{}</h4>
                   <img src={gif.images.fixed_height.url} alt="" />
-                  <RiHeartLine
-                    style={{
-                      fill: "red",
-                      transform: "translateX(-35px)",
-                    }}
-                    onClick={(e) => {
-                      e.target.style.fill = "#FF67E7";
-                    }}
-                    size="2em"
-                  />
+                  <HeartIcon>
+                    <RiHeartLine
+                      onClick={(e) => {
+                        e.target.style.background = "#FF67E7";
+                        e.target.style.color = "white";
+                      }}
+                      size="2em"
+                    />
+                  </HeartIcon>
                 </div>
               ))}
           </div>

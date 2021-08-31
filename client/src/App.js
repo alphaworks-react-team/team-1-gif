@@ -193,6 +193,8 @@ function App() {
               onChange={onChange}
               randomGiph={randomGiph}
               AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
+              displayModal={displayModal}
+              setDisplayModal={setDisplayModal}
             >
               <Search onClick={onClick} onChange={onChange} required></Search>
               <p>{searchError}</p>
@@ -210,6 +212,7 @@ function App() {
               AddToFavoriteClickFromCategory={AddToFavoriteClickFromCategory}
               displayModal={displayModal}
               setDisplayModal={setDisplayModal}
+              auth={auth}
             />
           </Route>
 

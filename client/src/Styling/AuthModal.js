@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   height: 100vh;
@@ -31,11 +31,14 @@ const Card = styled.div`
   padding-bottom: 5rem;
 `;
 
-const AuthModal = props => {
+const AuthModal = (props) => {
   return (
     <Container onClick={() => props.setAuthErr(false)}>
       <Card>
-        <img src='https://media.giphy.com/media/vyTnNTrs3wqQ0UIvwE/giphy.gif' />
+        <img
+          src="https://media.giphy.com/media/vyTnNTrs3wqQ0UIvwE/giphy.gif"
+          alt="Icon"
+        />
       </Card>
       <Text>INCORRECT LOG-IN/PASSWORD PLEASE TRY AGAIN</Text>
     </Container>
