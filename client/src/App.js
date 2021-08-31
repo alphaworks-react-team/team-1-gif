@@ -24,15 +24,14 @@ function App() {
   const [category, setCategory] = useState();
   const [randomGiph, setRandomGiph] = useState();
   const [favoriteGifs, setFavoriteGifs] = useState([]);
-
   const [searchError, setSearchError] = useState('');
-
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [auth, setAuth] = useState(false);
   const [authErr, setAuthErr] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
 
+  //user auth
   const getUser = e => {
     setUser(e.target.value);
   };
@@ -85,24 +84,14 @@ function App() {
     }
   }, []);
 
-  //delete
-  // useEffect(() => {
-  //   const deletes = localStorage.getItem("deletes");
-  //   if (deletes === null) {
-  //     setDeleteGifs([]);
-  //     localStorage.setItem("deletes", JSON.stringify([]));
-  //   } else {
-  //     setDeleteGifs(JSON.parse(deletes));
-  //   }
-  // }, []);
-
+  //search
   const onClick = e => {
     e.preventDefault();
     let isValid = validate();
-    if( isValid ) {
-      console.log('is valid')
+    if (isValid) {
+      console.log('is valid');
     } else {
-      setSearchError('')
+      setSearchError('');
     }
     axios
       .get(`/api/search/?search=${search}`)
@@ -110,21 +99,22 @@ function App() {
         document.querySelector('#searchInput').value = '';
         setGiph(res.data.data);
       })
-      .catch((err) => console.log(err));
-    setSearch('')
+      .catch(err => console.log(err));
+
+    setSearch('');
   };
 
-const validate = () => {
-  let searchError = '';
-  if(search === '') {
-    searchError = 'YOLANDA';
-    setSearchError(searchError)
-  }
-  if(!searchError) {
-    return false;
-  }
-  return true;
-}
+  const validate = () => {
+    let searchError = '';
+    if (search === '') {
+      searchError = 'YOLANDA';
+      setSearchError(searchError);
+    }
+    if (!searchError) {
+      return false;
+    }
+    return true;
+  };
 
   const onCategoryClick = (e, value) => {
     e.preventDefault();
@@ -138,6 +128,7 @@ const validate = () => {
     setSearch(e.target.value);
   };
 
+  //Add to Favorites
   const AddToFavoriteClick = index => {
     if (auth === false) {
       return setDisplayModal(true);
@@ -156,7 +147,7 @@ const validate = () => {
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(category[index]);
-    localStorage.setItem("favorites", JSON.stringify(arr));
+    localStorage.setItem('favorites', JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
@@ -165,10 +156,10 @@ const validate = () => {
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(giph[index]);
-    localStorage.setItem("favorites", JSON.stringify(arr));
+    localStorage.setItem('favorites', JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
-
+  //Delete from favorites
   const DeleteFavoriteClicks = index => {
     console.log(index);
     const arr = [...favoriteGifs];
@@ -178,6 +169,11 @@ const validate = () => {
     localStorage.setItem('favorites', JSON.stringify(storageArray));
     setFavoriteGifs(arr);
   };
+
+  //toggle Follow for profile follow button... ignore this
+  // const handleFollowToggle = () =>{
+  //  setToggleFollow(!toggleFollow)
+  // }
 
   return (
     <div className='glizzy-app'>
@@ -190,8 +186,7 @@ const validate = () => {
               onClick={onClick}
               onChange={onChange}
               randomGiph={randomGiph}
-              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
-            >
+              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}>
               <Search onClick={onClick} onChange={onChange} required></Search>
               <p>{searchError}</p>
             </Home>
@@ -227,6 +222,8 @@ const validate = () => {
               <Profile
                 favoriteGifs={favoriteGifs}
                 DeleteFavoriteClicks={DeleteFavoriteClicks}
+                // handleFollowToggle={handleFollowToggle}
+                // toggleFollow={toggleFollow}
               />
             )}
           </Route>
