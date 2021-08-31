@@ -12,6 +12,15 @@ const Container = styled.div`
   min-height: 80vh;
 `;
 
+const Text = styled.div`
+  width: 40rem;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+
+  padding-bottom: 5rem;
+`;
+
 const RandomGiph = styled.div`
   display: flex;
   flex-flow: column;
@@ -27,13 +36,13 @@ const Home = ({ giph, randomGiph, AddToFavoriteClickFromSearch, children }) => {
 
       {!giph ? (
         <RandomGiph>
-          Random Gliphy Yo!
-          <img src={randomGiph?.images.original.url} alt="" />
+          <Text>Random Gliphy Yo!</Text>
+          <img src={randomGiph?.images.original.url} alt='' />
         </RandomGiph>
       ) : (
         giph.map((gif, index) => (
           <Card onClick={() => AddToFavoriteClickFromSearch(index)} key={index}>
-            <img src={gif.images.fixed_height.url} alt="" />
+            <img src={gif.images.fixed_height.url} alt='' />
           </Card>
         ))
       )}

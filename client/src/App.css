@@ -14,6 +14,8 @@
   align-items: center;
   justify-content: center;
   flex-flow: column;
+
+  padding-bottom: 5rem;
 }
 
 @-webkit-keyframes Gradient {
@@ -53,6 +55,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
 
 @media screen and (max-width: 450px) {
   .glizzy-app {
