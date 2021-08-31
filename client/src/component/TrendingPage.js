@@ -1,10 +1,10 @@
-import React from 'react';
-import Container from './Container';
-import CarouselTest from '../test/CarouselTest';
-import { RiHeartLine } from 'react-icons/ri';
-import { MdCancel } from 'react-icons/md';
-import styled from 'styled-components';
-import { Link, withRouter } from 'react-router-dom';
+import React from "react";
+import Container from "./Container";
+import CarouselTest from "../test/CarouselTest";
+import { RiHeartLine } from "react-icons/ri";
+import { MdCancel } from "react-icons/md";
+import styled from "styled-components";
+import { Link, withRouter } from "react-router-dom";
 
 const ModalBackground = styled.div`
   height: 100vh;
@@ -98,17 +98,18 @@ const TrendingPage = ({
             </CancelBox>
             <LinkBox>
               <Link
-                to={'/profile'}
+                to={"/profile"}
                 onClick={() => setDisplayModal(false)}
-                style={{ textDecoration: 'none' }}>
+                style={{ textDecoration: "none" }}
+              >
                 <LinkTag>Log-in to like giphs</LinkTag>
               </Link>
             </LinkBox>
           </Modal>
         </ModalBackground>
       ) : null}
-      <CarouselTest title='Trending'>
-        <h3 style={{ margin: '0', paddingLeft: '10px', color: 'white' }}>
+      <CarouselTest title="Trending">
+        <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
           Trending
         </h3>
         <div>
@@ -116,39 +117,44 @@ const TrendingPage = ({
             trending.map((gif, index) => (
               <div
                 style={{
-                  display: 'inline-block',
-                  padding: '10px',
+                  display: "inline-block",
+                  padding: "10px",
                 }}
                 key={index}
-                onClick={() => AddToFavoriteClick(index)}>
-                <img src={gif.images.fixed_height.url} alt='' />
+                onClick={() => AddToFavoriteClick(index)}
+              >
+                <img src={gif.images.fixed_height.url} alt="" />
                 <RiHeartLine
                   style={{
-                    fill: 'red',
-                    transform: 'translateX(-35px)',
+                    fill: "red",
+                    transform: "translateX(-35px)",
                   }}
-                  size='2em'
+                  onClick={(e) => {
+                    e.target.style.fill = "#FF67E7";
+                  }}
+                  size="2em"
                 />
               </div>
             ))}
         </div>
       </CarouselTest>
       <CarouselTest>
-        <h3 style={{ margin: '0', paddingLeft: '10px', color: 'white' }}>
+        <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
           Categories
         </h3>
         <div>
           {categories &&
             categories.map((gif, index) => (
               <div
-                onClick={e => onClick(e, gif.name)}
+                onClick={(e) => onClick(e, gif.name)}
                 style={{
-                  display: 'inline-block',
-                  padding: '10px',
+                  display: "inline-block",
+                  padding: "10px",
                 }}
-                key={index}>
+                key={index}
+              >
                 <h4 style={{ margin: 0 }}>{gif.name}</h4>
-                <img src={gif.gif.images.fixed_height.url} alt='' />
+                <img src={gif.gif.images.fixed_height.url} alt="" />
               </div>
             ))}
         </div>
@@ -159,20 +165,24 @@ const TrendingPage = ({
             {category &&
               category.map((gif, index) => (
                 <div
-                  onClick={e => AddToFavoriteClickFromCategory(index)}
+                  onClick={(e) => AddToFavoriteClickFromCategory(index)}
                   style={{
-                    display: 'inline-block',
-                    padding: '10px',
+                    display: "inline-block",
+                    padding: "10px",
                   }}
-                  key={index}>
+                  key={index}
+                >
                   <h4 style={{ margin: 0 }}>{}</h4>
-                  <img src={gif.images.fixed_height.url} alt='' />
+                  <img src={gif.images.fixed_height.url} alt="" />
                   <RiHeartLine
                     style={{
-                      fill: 'red',
-                      transform: 'translateX(-35px)',
+                      fill: "red",
+                      transform: "translateX(-35px)",
                     }}
-                    size='2em'
+                    onClick={(e) => {
+                      e.target.style.fill = "#FF67E7";
+                    }}
+                    size="2em"
                   />
                 </div>
               ))}
