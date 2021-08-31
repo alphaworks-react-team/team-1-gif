@@ -8,7 +8,9 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  margin-bottom: 5rem;
+  //margin-bottom: 5rem;
+
+  margin-bottom: 0;
 `;
 
 const Box = styled.form`
@@ -23,7 +25,7 @@ const Box = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-bottom: 3rem; */
+  margin-bottom: 3rem;
   margin-top: 5rem;
 
   @media (max-width: 600px) {

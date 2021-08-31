@@ -15,6 +15,7 @@ import TrendingPage from './component/TrendingPage';
 import Profile from './component/Profile';
 import Login from './component/Login';
 import AuthModal from './Styling/AuthModal';
+import SearchError from './component/SearchError';
 
 function App() {
   const [trending, setTrending] = useState([]);
@@ -116,7 +117,7 @@ function App() {
 const validate = () => {
   let searchError = '';
   if(search === '') {
-    searchError = 'YOLANDA';
+    searchError = 'Search is blank :(';
     setSearchError(searchError)
   }
   if(!searchError) {
@@ -192,7 +193,7 @@ const validate = () => {
               AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
             >
               <Search onClick={onClick} onChange={onChange} required></Search>
-              <p>{searchError}</p>
+              <SearchError>{searchError}</SearchError>
             </Home>
           </Route>
           <Route path="/trending">

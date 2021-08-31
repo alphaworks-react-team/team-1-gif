@@ -20,10 +20,10 @@ const RandomGiph = styled.div`
   font-weight: bold;
 `;
 
-const Home = ({ giph, randomGiph, AddToFavoriteClickFromSearch, children, error }) => {
+const Home = ({ giph, randomGiph, AddToFavoriteClickFromSearch, children }) => {
   return (
     <Container>
-      {children}
+      <div>{children}</div>
 
       {!giph ? (
         <RandomGiph>
