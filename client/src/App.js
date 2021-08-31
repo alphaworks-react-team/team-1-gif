@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Switch, Route } from "react-router";
 
-
 import Container from "./Styling/Container";
 import Search from "./component/Search";
 import Nav from "./Styling/Nav";
@@ -28,7 +27,6 @@ function App() {
   const [authErr, setAuthErr] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
 
-
   const getUser = (e) => {
     setUser(e.target.value);
   };
@@ -39,6 +37,9 @@ function App() {
 
   const getAuth = (e) => {
     e.preventDefault();
+    if (!user || !password) {
+      setAuthErr(true);
+    }
     if (user !== "Ari" && password !== "ari") {
       setAuthErr(true);
     } else if (user === "Ari" && password === "ari") {
@@ -53,7 +54,6 @@ function App() {
     }
     return null;
   };
-
 
   useEffect(() => {
     axios
@@ -70,7 +70,6 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-
   useEffect(() => {
     const favorites = localStorage.getItem("favorites");
     if (favorites === null) {
@@ -80,7 +79,6 @@ function App() {
       setFavoriteGifs(JSON.parse(favorites));
     }
   }, []);
-
 
   const onClick = (e) => {
     e.preventDefault();
@@ -125,7 +123,6 @@ function App() {
     setSearch(e.target.value);
   };
 
-  
   const AddToFavoriteClick = (index) => {
     if (auth === false) {
       return setDisplayModal(true);
@@ -182,6 +179,8 @@ function App() {
               onChange={onChange}
               randomGiph={randomGiph}
               AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
+              displayModal={displayModal}
+              setDisplayModal={setDisplayModal}
             >
               <Search onClick={onClick} onChange={onChange} required></Search>
               <p>{searchError}</p>
@@ -199,6 +198,7 @@ function App() {
               AddToFavoriteClickFromCategory={AddToFavoriteClickFromCategory}
               displayModal={displayModal}
               setDisplayModal={setDisplayModal}
+              auth={auth}
             />
           </Route>
 

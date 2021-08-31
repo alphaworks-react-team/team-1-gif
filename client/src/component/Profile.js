@@ -1,14 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Card } from '../Styling/Card';
-import { BsTrash } from 'react-icons/bs';
-import {Container, FavoritesContainer, ProfilePic, FollowContainer } from "../Styling/ProfileStyling"
+import React from "react";
 
+import { Card } from "../Styling/Card";
+import { BsTrash } from "react-icons/bs";
+import {
+  Container,
+  FavoritesContainer,
+  ProfilePic,
+  FollowContainer,
+} from "../Styling/ProfileStyling";
 
-const Profile = ({
-  favoriteGifs,
-  DeleteFavoriteClicks,
-}) => {
+const Profile = ({ favoriteGifs, DeleteFavoriteClicks }) => {
   return (
     <Container>
       <ProfilePic></ProfilePic>
@@ -23,16 +24,16 @@ const Profile = ({
         {favoriteGifs &&
           favoriteGifs.map((gif, index) => (
             <Card key={index} onClick={() => DeleteFavoriteClicks(index)}>
-              <img src={gif.images.fixed_height.url} alt='' />
+              <img src={gif.images.fixed_height.url} alt="" />
               <BsTrash
                 style={{
-                  fill: 'black',
-                  transform: 'translateX(-35px)',
-                  '&:hover': {
-                    cursor: 'pointer',
+                  fill: "black",
+                  transform: "translateX(-35px)",
+                  "&:hover": {
+                    cursor: "pointer",
                   },
                 }}
-                size='2em'
+                size="2em"
               />
             </Card>
           ))}

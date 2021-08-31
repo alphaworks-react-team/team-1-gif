@@ -3,8 +3,16 @@ import Container from "../Styling/Container";
 import CarouselTest from "../test/CarouselTest";
 import { RiHeartLine } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
-import { Link, withRouter } from "react-router-dom";
-import { ModalBackground, Modal,CancelBox, CancelIcon,LinkBox, LinkTag } from "../Styling/TrendingStyles";
+import { Link } from "react-router-dom";
+import {
+  ModalBackground,
+  Modal,
+  CancelBox,
+  CancelIcon,
+  LinkBox,
+  LinkTag,
+  HeartIcon,
+} from "../Styling/TrendingStyles";
 
 const TrendingPage = ({
   trending,
@@ -54,16 +62,15 @@ const TrendingPage = ({
                 onClick={() => AddToFavoriteClick(index)}
               >
                 <img src={gif.images.fixed_height.url} alt="" />
-                <RiHeartLine
-                  style={{
-                    fill: "red",
-                    transform: "translateX(-35px)",
-                  }}
-                  onClick={(e) => {
-                    e.target.style.fill = "#FF67E7";
-                  }}
-                  size="2em"
-                />
+                <HeartIcon>
+                  <RiHeartLine
+                    onClick={(e) => {
+                      e.target.style.background = "#FF67E7";
+                      e.target.style.color = "white";
+                    }}
+                    size="2em"
+                  />
+                </HeartIcon>
               </div>
             ))}
         </div>
@@ -104,16 +111,15 @@ const TrendingPage = ({
                 >
                   <h4 style={{ margin: 0 }}>{}</h4>
                   <img src={gif.images.fixed_height.url} alt="" />
-                  <RiHeartLine
-                    style={{
-                      fill: "red",
-                      transform: "translateX(-35px)",
-                    }}
-                    onClick={(e) => {
-                      e.target.style.fill = "#FF67E7";
-                    }}
-                    size="2em"
-                  />
+                  <HeartIcon>
+                    <RiHeartLine
+                      onClick={(e) => {
+                        e.target.style.background = "#FF67E7";
+                        e.target.style.color = "white";
+                      }}
+                      size="2em"
+                    />
+                  </HeartIcon>
                 </div>
               ))}
           </div>
