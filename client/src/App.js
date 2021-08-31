@@ -1,7 +1,13 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState
+} from 'react';
 import axios from 'axios';
-import { Switch, Route } from 'react-router';
+import {
+  Switch,
+  Route
+} from 'react-router';
 
 //routes
 // import routes from './config/routes';
@@ -53,7 +59,10 @@ function App() {
 
   const showErr = authErr => {
     if (authErr) {
-      return <AuthModal setAuthErr={setAuthErr} />;
+      return <AuthModal setAuthErr = {
+        setAuthErr
+      }
+      />;
     }
     return null;
   };
@@ -105,17 +114,17 @@ function App() {
     setSearch('');
   };
 
-const validate = () => {
-  let searchError = '';
-  if(search === '') {
-    searchError = 'Search is blank :(';
-    setSearchError(searchError)
+  const validate = () => {
+    let searchError = '';
+    if (search === '') {
+      searchError = 'Search is blank :(';
+      setSearchError(searchError)
+    }
+    if (!searchError) {
+      return false;
+    }
+    return true;
   }
-  if(!searchError) {
-    return false;
-  }
-  return true;
-}
 
   const onCategoryClick = (e, value) => {
     e.preventDefault();
@@ -176,61 +185,122 @@ const validate = () => {
   //  setToggleFollow(!toggleFollow)
   // }
 
-  return (
-    <div className='glizzy-app'>
-      <Nav />
-      <Container>
-        <Switch>
-          <Route exact path='/'>
-            <Home
-              giph={giph}
-              onClick={onClick}
-              onChange={onChange}
-              randomGiph={randomGiph}
-              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}>
-              <Search onClick={onClick} onChange={onChange} required></Search>
-              <SearchError>{searchError}</SearchError>
-            </Home>
-          </Route>
-          <Route path='/trending'>
-            <TrendingPage
-              giph={giph}
-              trending={trending}
-              categories={categories}
-              search={search}
-              category={category}
-              onClick={onCategoryClick}
-              AddToFavoriteClick={AddToFavoriteClick}
-              AddToFavoriteClickFromCategory={AddToFavoriteClickFromCategory}
-              displayModal={displayModal}
-              setDisplayModal={setDisplayModal}
-            />
-          </Route>
+  return ( <
+    div className = 'glizzy-app' >
+    <
+    Nav / >
+    <
+    Container >
+    <
+    Switch >
+    <
+    Route exact path = '/' >
+    <
+    Home giph = {
+      giph
+    }
+    onClick = {
+      onClick
+    }
+    onChange = {
+      onChange
+    }
+    randomGiph = {
+      randomGiph
+    }
+    AddToFavoriteClickFromSearch = {
+      AddToFavoriteClickFromSearch
+    } >
+    <
+    Search onClick = {
+      onClick
+    }
+    onChange = {
+      onChange
+    }
+    required > < /Search> <
+    SearchError > {
+      searchError
+    } < /SearchError> <
+    /Home> <
+    /Route> <
+    Route path = '/trending' >
+    <
+    TrendingPage giph = {
+      giph
+    }
+    trending = {
+      trending
+    }
+    categories = {
+      categories
+    }
+    search = {
+      search
+    }
+    category = {
+      category
+    }
+    onClick = {
+      onCategoryClick
+    }
+    AddToFavoriteClick = {
+      AddToFavoriteClick
+    }
+    AddToFavoriteClickFromCategory = {
+      AddToFavoriteClickFromCategory
+    }
+    displayModal = {
+      displayModal
+    }
+    setDisplayModal = {
+      setDisplayModal
+    }
+    /> <
+    /Route>
 
-          <Route path='/profile'>
-            {showErr(authErr)}
+    <
+    Route path = '/profile' > {
+      showErr(authErr)
+    }
 
-            {!auth ? (
-              <Login
-                user={user}
-                getUser={getUser}
-                password={password}
-                getPassword={getPassword}
-                auth={auth}
-                getAuth={getAuth}
-              />
-            ) : (
-              <Profile
-                favoriteGifs={favoriteGifs}
-                DeleteFavoriteClicks={DeleteFavoriteClicks}
-                // handleFollowToggle={handleFollowToggle}
-                // toggleFollow={toggleFollow}
-              />
-            )}
-          </Route>
-        </Switch>
-      </Container>
-    </div>
+    {
+      !auth ? ( <
+        Login user = {
+          user
+        }
+        getUser = {
+          getUser
+        }
+        password = {
+          password
+        }
+        getPassword = {
+          getPassword
+        }
+        auth = {
+          auth
+        }
+        getAuth = {
+          getAuth
+        }
+        />
+      ) : ( <
+        Profile favoriteGifs = {
+          favoriteGifs
+        }
+        DeleteFavoriteClicks = {
+          DeleteFavoriteClicks
+        }
+        // handleFollowToggle={handleFollowToggle}
+        // toggleFollow={toggleFollow}
+        />
+      )
+    } <
+    /Route> <
+    /Switch> <
+    /Container> <
+    /div>
   );
 }
 
