@@ -1,80 +1,18 @@
-import React from 'react';
-import Container from './Container';
-import CarouselTest from '../test/CarouselTest';
-import { RiHeartLine } from 'react-icons/ri';
-import { MdCancel } from 'react-icons/md';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
-const ModalBackground = styled.div`
-  height: 100%;
-  width: 100vw;
-
-  z-index: 1;
-
-  display: flex;
-  flex-flow: wrap column;
-  justify-content: center;
-  align-items: center;
-
-  position: absolute;
-
-  background-color: rgb(51, 51, 51, 0.8);
-  padding-bottom: 5rem;
-`;
-
-const Modal = styled.div`
-  background: black;
-  color: white;
-
-  z-index: 1;
-  position: absolute;
-
-  transform: translate(0rem, -15rem);
-  border-radius: 25px;
-`;
-
-const CancelBox = styled.div`
-  height: 30px;
-  width: 400px;
-  font-size: 2rem;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  margin-top: 1rem;
-  margin-left: -1rem;
-`;
-
-const CancelIcon = styled.div`
-  height: 30px;
-  width: 30px;
-
-  cursor: pointer;
-
-  :hover {
-    color: #ff67e7;
-  }
-`;
-
-const LinkBox = styled.div`
-  height: 270px;
-  width: 400px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const LinkTag = styled.div`
-  font-size: 35px;
-  color: white;
-
-  :hover {
-    color: #ff67e7;
-  }
-`;
+import React from "react";
+import Container from "../Styling/Container";
+import CarouselTest from "../test/CarouselTest";
+import { RiHeartLine } from "react-icons/ri";
+import { MdCancel } from "react-icons/md";
+import { Link } from "react-router-dom";
+import {
+  ModalBackground,
+  Modal,
+  CancelBox,
+  CancelIcon,
+  LinkBox,
+  LinkTag,
+  HeartIcon,
+} from "../Styling/TrendingStyles";
 
 const TrendingPage = ({
   trending,
@@ -98,17 +36,18 @@ const TrendingPage = ({
             </CancelBox>
             <LinkBox>
               <Link
-                to={'/profile'}
+                to={"/profile"}
                 onClick={() => setDisplayModal(false)}
-                style={{ textDecoration: 'none' }}>
+                style={{ textDecoration: "none" }}
+              >
                 <LinkTag>Log-in to like giphs</LinkTag>
               </Link>
             </LinkBox>
           </Modal>
         </ModalBackground>
       ) : null}
-      <CarouselTest title='Trending'>
-        <h3 style={{ margin: '0', paddingLeft: '10px', color: 'white' }}>
+      <CarouselTest title="Trending">
+        <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
           Trending
         </h3>
         <div>
@@ -116,39 +55,43 @@ const TrendingPage = ({
             trending.map((gif, index) => (
               <div
                 style={{
-                  display: 'inline-block',
-                  padding: '10px',
+                  display: "inline-block",
+                  padding: "10px",
                 }}
                 key={index}
-                onClick={() => AddToFavoriteClick(index)}>
-                <img src={gif.images.fixed_height.url} alt='' />
-                <RiHeartLine
-                  style={{
-                    fill: 'red',
-                    transform: 'translateX(-35px)',
-                  }}
-                  size='2em'
-                />
+                onClick={() => AddToFavoriteClick(index)}
+              >
+                <img src={gif.images.fixed_height.url} alt="" />
+                <HeartIcon>
+                  <RiHeartLine
+                    onClick={(e) => {
+                      e.target.style.background = "#FF67E7";
+                      e.target.style.color = "white";
+                    }}
+                    size="2em"
+                  />
+                </HeartIcon>
               </div>
             ))}
         </div>
       </CarouselTest>
       <CarouselTest>
-        <h3 style={{ margin: '0', paddingLeft: '10px', color: 'white' }}>
+        <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
           Categories
         </h3>
         <div>
           {categories &&
             categories.map((gif, index) => (
               <div
-                onClick={e => onClick(e, gif.name)}
+                onClick={(e) => onClick(e, gif.name)}
                 style={{
-                  display: 'inline-block',
-                  padding: '10px',
+                  display: "inline-block",
+                  padding: "10px",
                 }}
-                key={index}>
+                key={index}
+              >
                 <h4 style={{ margin: 0 }}>{gif.name}</h4>
-                <img src={gif.gif.images.fixed_height.url} alt='' />
+                <img src={gif.gif.images.fixed_height.url} alt="" />
               </div>
             ))}
         </div>
@@ -159,21 +102,24 @@ const TrendingPage = ({
             {category &&
               category.map((gif, index) => (
                 <div
-                  onClick={e => AddToFavoriteClickFromCategory(index)}
+                  onClick={(e) => AddToFavoriteClickFromCategory(index)}
                   style={{
-                    display: 'inline-block',
-                    padding: '10px',
+                    display: "inline-block",
+                    padding: "10px",
                   }}
-                  key={index}>
+                  key={index}
+                >
                   <h4 style={{ margin: 0 }}>{}</h4>
-                  <img src={gif.images.fixed_height.url} alt='' />
-                  <RiHeartLine
-                    style={{
-                      fill: 'red',
-                      transform: 'translateX(-35px)',
-                    }}
-                    size='2em'
-                  />
+                  <img src={gif.images.fixed_height.url} alt="" />
+                  <HeartIcon>
+                    <RiHeartLine
+                      onClick={(e) => {
+                        e.target.style.background = "#FF67E7";
+                        e.target.style.color = "white";
+                      }}
+                      size="2em"
+                    />
+                  </HeartIcon>
                 </div>
               ))}
           </div>
