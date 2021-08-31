@@ -14,6 +14,8 @@
   align-items: center;
   justify-content: center;
   flex-flow: column;
+
+  padding-bottom: 5rem;
 }
 
 @-webkit-keyframes Gradient {

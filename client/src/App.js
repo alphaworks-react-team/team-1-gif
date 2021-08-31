@@ -52,7 +52,7 @@ function App() {
 
   const showErr = (authErr) => {
     if (authErr) {
-      return <AuthModal />;
+      return <AuthModal setAuthErr={setAuthErr} />;
     }
     return null;
   };
@@ -138,11 +138,11 @@ const validate = () => {
     arr.push(trending[index]);
 
     // arr.push(category[index]);
-    localStorage.setItem("favorites", JSON.stringify(arr));
+    localStorage.setItem('favorites', JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
-  const AddToFavoriteClickFromCategory = (index) => {
+  const AddToFavoriteClickFromCategory = index => {
     console.log(index);
     const arr = [...favoriteGifs];
     console.log(arr);
@@ -151,7 +151,7 @@ const validate = () => {
     setFavoriteGifs(arr);
   };
 
-  const AddToFavoriteClickFromSearch = (index) => {
+  const AddToFavoriteClickFromSearch = index => {
     console.log(index);
     const arr = [...favoriteGifs];
     console.log(arr);
@@ -176,11 +176,11 @@ const validate = () => {
   // }
 
   return (
-    <div className="glizzy-app">
+    <div className='glizzy-app'>
       <Nav />
       <Container>
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Home
               giph={giph}
               onClick={onClick}
@@ -192,7 +192,7 @@ const validate = () => {
               <p>{searchError}</p>
             </Home>
           </Route>
-          <Route path="/trending">
+          <Route path='/trending'>
             <TrendingPage
               giph={giph}
               trending={trending}
