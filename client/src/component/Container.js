@@ -5,7 +5,6 @@ const Container = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-content: flex-start;
-
   min-height: 100vh;
 `;
 

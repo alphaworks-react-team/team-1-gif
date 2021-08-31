@@ -21,11 +21,12 @@ function App() {
   const [category, setCategory] = useState();
   const [randomGiph, setRandomGiph] = useState();
   const [favoriteGifs, setFavoriteGifs] = useState([]);
+  const [searchError, setSearchError] = useState("");
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [auth, setAuth] = useState(false);
   const [authErr, setAuthErr] = useState(false);
-  // const [toggleFollow, setToggleFollow] = useState(false)
+  const [displayModal, setDisplayModal] = useState(false);
 
   //user auth
   const getUser = (e) => {
@@ -48,7 +49,7 @@ function App() {
 
   const showErr = (authErr) => {
     if (authErr) {
-      return <AuthModal />;
+      return <AuthModal setAuthErr={setAuthErr} />;
     }
     return null;
   };
@@ -83,7 +84,12 @@ function App() {
   //search
   const onClick = (e) => {
     e.preventDefault();
-
+    let isValid = validate();
+    if (isValid) {
+      console.log("is valid");
+    } else {
+      setSearchError("");
+    }
     axios
       .get(`/api/search/?search=${search}`)
       .then((res) => {
@@ -91,6 +97,20 @@ function App() {
         setGiph(res.data.data);
       })
       .catch((err) => console.log(err));
+
+    setSearch("");
+  };
+
+  const validate = () => {
+    let searchError = "";
+    if (search === "") {
+      searchError = "YOLANDA";
+      setSearchError(searchError);
+    }
+    if (!searchError) {
+      return false;
+    }
+    return true;
   };
   //categories
   const onCategoryClick = (e, value) => {
@@ -108,7 +128,7 @@ function App() {
   //Add to Favorites
   const AddToFavoriteClick = (index) => {
     if (auth === false) {
-      return alert("You NEED to be logged in");
+      return setDisplayModal(true);
     }
     const arr = [...favoriteGifs];
     console.log(arr);
@@ -118,6 +138,9 @@ function App() {
   };
 
   const AddToFavoriteClickFromCategory = (index) => {
+    if (auth === false) {
+      return setDisplayModal(true);
+    }
     console.log(index);
     const arr = [...favoriteGifs];
     console.log(arr);
@@ -127,6 +150,9 @@ function App() {
   };
 
   const AddToFavoriteClickFromSearch = (index) => {
+    if (auth === false) {
+      return setDisplayModal(true);
+    }
     console.log(index);
     const arr = [...favoriteGifs];
     console.log(arr);
@@ -134,7 +160,6 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
-  
   //Delete from favorites
   const DeleteFavoriteClicks = (index) => {
     console.log(index);
@@ -164,7 +189,8 @@ function App() {
               randomGiph={randomGiph}
               AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
             >
-              <Search onClick={onClick} onChange={onChange}></Search>
+              <Search onClick={onClick} onChange={onChange} required></Search>
+              <p>{searchError}</p>
             </Home>
           </Route>
           <Route path="/trending">
@@ -177,6 +203,8 @@ function App() {
               onClick={onCategoryClick}
               AddToFavoriteClick={AddToFavoriteClick}
               AddToFavoriteClickFromCategory={AddToFavoriteClickFromCategory}
+              displayModal={displayModal}
+              setDisplayModal={setDisplayModal}
             />
           </Route>
 

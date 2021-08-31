@@ -7,6 +7,8 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
+  margin-bottom: 5rem;
 `;
 
 const Box = styled.form`
@@ -21,7 +23,11 @@ const Box = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
   margin-bottom: 5rem;
+=======
+  /* margin-bottom: 3rem; */
+>>>>>>> b7f316fd1e8db42b7b4adcb0169a232d619cabf4
   margin-top: 5rem;
   @media (max-width: 600px) {
     width: 85%;
@@ -60,15 +66,15 @@ const Button = styled.button`
   }
 `;
 
-const Search = (props) => {
+const Search = ({ error, onChange, onClick, children }) => {
   return (
     <Container>
       <Box>
-        <SearchBar onChange={props.onChange} placeholder="Search GIF">
-          {props.children}
+        <SearchBar onChange={onChange} placeholder='Search GIF'>
+          {children}
         </SearchBar>
-        <Button onClick={props.onClick}>
-          {props.children}
+        <Button onClick={onClick}>
+          {children}
           <BiSearchAlt />
         </Button>
       </Box>
