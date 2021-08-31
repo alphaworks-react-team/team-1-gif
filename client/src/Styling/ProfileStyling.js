@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const  FavoritesContainer = styled.div`
+export const FavoritesContainer = styled.div`
   display: flex;
   align-items: center;
   display: flex;
@@ -17,7 +17,7 @@ export const  FavoritesContainer = styled.div`
   margin-bottom: 5rem;
 `;
 
-export const  ProfilePic = styled.div`
+export const ProfilePic = styled.div`
   display: flex;
   width: 15rem;
   height: 15rem;

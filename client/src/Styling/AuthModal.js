@@ -2,20 +2,22 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
-
-  z-index: 1;
+  z-index: 10;
 
   display: flex;
   flex-flow: wrap column;
   justify-content: center;
   align-items: center;
 
-  top: 10;
-  position: absolute;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
 
   background-color: rgb(51, 51, 51, 0.8);
+  background-cover: fill;
+
 `;
 
 const Text = styled.div`
