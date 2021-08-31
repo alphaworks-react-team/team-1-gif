@@ -31,6 +31,7 @@ function App() {
   const [password, setPassword] = useState('');
   const [auth, setAuth] = useState(false);
   const [authErr, setAuthErr] = useState(false);
+  const [displayModal, setDisplayModal] = useState(false);
 
   const getUser = e => {
     setUser(e.target.value);
@@ -139,7 +140,7 @@ const validate = () => {
 
   const AddToFavoriteClick = index => {
     if (auth === false) {
-      return alert('You NEED to be logged in');
+      return setDisplayModal(true);
     }
     const arr = [...favoriteGifs];
     console.log(arr);
@@ -205,6 +206,8 @@ const validate = () => {
               onClick={onCategoryClick}
               AddToFavoriteClick={AddToFavoriteClick}
               AddToFavoriteClickFromCategory={AddToFavoriteClickFromCategory}
+              displayModal={displayModal}
+              setDisplayModal={setDisplayModal}
             />
           </Route>
 
