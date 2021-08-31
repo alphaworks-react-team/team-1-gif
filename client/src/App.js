@@ -1,56 +1,56 @@
-import './App.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Switch, Route } from 'react-router';
+import "./App.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Switch, Route } from "react-router";
 
 //routes
 // import routes from './config/routes';
 
 //Components
-import Container from './component/Container';
-import Search from './component/Search';
-import Nav from './Styling/Nav';
-import Home from './component/Home';
-import TrendingPage from './component/TrendingPage';
-import Profile from './component/Profile';
-import Login from './component/Login';
-import AuthModal from './Styling/AuthModal';
+import Container from "./component/Container";
+import Search from "./component/Search";
+import Nav from "./Styling/Nav";
+import Home from "./component/Home";
+import TrendingPage from "./component/TrendingPage";
+import Profile from "./component/Profile";
+import Login from "./component/Login";
+import AuthModal from "./Styling/AuthModal";
 
 function App() {
   const [trending, setTrending] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [giph, setGiph] = useState(null);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
   const [randomGiph, setRandomGiph] = useState();
   const [favoriteGifs, setFavoriteGifs] = useState([]);
-  const [searchError, setSearchError] = useState('');
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
+  const [searchError, setSearchError] = useState("");
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
   const [auth, setAuth] = useState(false);
   const [authErr, setAuthErr] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
 
   //user auth
-  const getUser = e => {
+  const getUser = (e) => {
     setUser(e.target.value);
   };
 
-  const getPassword = e => {
+  const getPassword = (e) => {
     setPassword(e.target.value);
   };
 
-  const getAuth = e => {
+  const getAuth = (e) => {
     e.preventDefault();
-    if (user !== 'Ari' && password !== 'ari') {
+    if (user !== "Ari" && password !== "ari") {
       setAuthErr(true);
-    } else if (user === 'Ari' && password === 'ari') {
+    } else if (user === "Ari" && password === "ari") {
       setAuthErr(false);
       setAuth(true);
     }
   };
 
-  const showErr = authErr => {
+  const showErr = (authErr) => {
     if (authErr) {
       return <AuthModal setAuthErr={setAuthErr} />;
     }
@@ -60,54 +60,54 @@ function App() {
   //trending
   useEffect(() => {
     axios
-      .get('/api')
-      .then(res => setTrending(res.data.data))
-      .catch(err => console.log(err));
+      .get("/api")
+      .then((res) => setTrending(res.data.data))
+      .catch((err) => console.log(err));
     axios
-      .get('/api/categories')
-      .then(res => setCategories(res.data.data))
-      .catch(err => console.log(err));
+      .get("/api/categories")
+      .then((res) => setCategories(res.data.data))
+      .catch((err) => console.log(err));
     axios
-      .get('/api/randomGiph')
-      .then(res => setRandomGiph(res.data.data))
-      .catch(err => console.log(err));
+      .get("/api/randomGiph")
+      .then((res) => setRandomGiph(res.data.data))
+      .catch((err) => console.log(err));
   }, []);
 
   //favorites
   useEffect(() => {
-    const favorites = localStorage.getItem('favorites');
+    const favorites = localStorage.getItem("favorites");
     if (favorites === null) {
       setFavoriteGifs([]);
-      localStorage.setItem('favorites', JSON.stringify([]));
+      localStorage.setItem("favorites", JSON.stringify([]));
     } else {
       setFavoriteGifs(JSON.parse(favorites));
     }
   }, []);
 
   //search
-  const onClick = e => {
+  const onClick = (e) => {
     e.preventDefault();
     let isValid = validate();
     if (isValid) {
-      console.log('is valid');
+      console.log("is valid");
     } else {
-      setSearchError('');
+      setSearchError("");
     }
     axios
       .get(`/api/search/?search=${search}`)
-      .then(res => {
-        document.querySelector('#searchInput').value = '';
+      .then((res) => {
+        document.querySelector("#searchInput").value = "";
         setGiph(res.data.data);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
 
-    setSearch('');
+    setSearch("");
   };
 
   const validate = () => {
-    let searchError = '';
-    if (search === '') {
-      searchError = 'YOLANDA';
+    let searchError = "";
+    if (search === "") {
+      searchError = "YOLANDA";
       setSearchError(searchError);
     }
     if (!searchError) {
@@ -120,16 +120,16 @@ function App() {
     e.preventDefault();
     axios
       .get(`/api/search/?search=${value}`)
-      .then(res => setCategory(res.data.data))
-      .catch(err => console.log(err));
+      .then((res) => setCategory(res.data.data))
+      .catch((err) => console.log(err));
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     setSearch(e.target.value);
   };
 
   //Add to Favorites
-  const AddToFavoriteClick = index => {
+  const AddToFavoriteClick = (index) => {
     if (auth === false) {
       return setDisplayModal(true);
     }
@@ -138,35 +138,41 @@ function App() {
     arr.push(trending[index]);
 
     // arr.push(category[index]);
-    localStorage.setItem('favorites', JSON.stringify(arr));
+    localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
-  const AddToFavoriteClickFromCategory = index => {
+  const AddToFavoriteClickFromCategory = (index) => {
+    if (auth === false) {
+      return setDisplayModal(true);
+    }
     console.log(index);
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(category[index]);
-    localStorage.setItem('favorites', JSON.stringify(arr));
+    localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
-  const AddToFavoriteClickFromSearch = index => {
+  const AddToFavoriteClickFromSearch = (index) => {
+    if (auth === false) {
+      return setDisplayModal(true);
+    }
     console.log(index);
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(giph[index]);
-    localStorage.setItem('favorites', JSON.stringify(arr));
+    localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
   //Delete from favorites
-  const DeleteFavoriteClicks = index => {
+  const DeleteFavoriteClicks = (index) => {
     console.log(index);
     const arr = [...favoriteGifs];
     arr.splice(index, 1);
-    const storageArray = JSON.parse(localStorage.getItem('favorites'));
+    const storageArray = JSON.parse(localStorage.getItem("favorites"));
     storageArray.splice(index, 1);
-    localStorage.setItem('favorites', JSON.stringify(storageArray));
+    localStorage.setItem("favorites", JSON.stringify(storageArray));
     setFavoriteGifs(arr);
   };
 
@@ -176,22 +182,23 @@ function App() {
   // }
 
   return (
-    <div className='glizzy-app'>
+    <div className="glizzy-app">
       <Nav />
       <Container>
         <Switch>
-          <Route exact path='/'>
+          <Route exact path="/">
             <Home
               giph={giph}
               onClick={onClick}
               onChange={onChange}
               randomGiph={randomGiph}
-              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}>
+              AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
+            >
               <Search onClick={onClick} onChange={onChange} required></Search>
               <p>{searchError}</p>
             </Home>
           </Route>
-          <Route path='/trending'>
+          <Route path="/trending">
             <TrendingPage
               giph={giph}
               trending={trending}
@@ -206,7 +213,7 @@ function App() {
             />
           </Route>
 
-          <Route path='/profile'>
+          <Route path="/profile">
             {showErr(authErr)}
 
             {!auth ? (
