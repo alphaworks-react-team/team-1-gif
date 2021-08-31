@@ -35,7 +35,7 @@ const AuthModal = props => {
   return (
     <Container onClick={() => props.setAuthErr(false)}>
       <Card>
-        <img src='https://media.giphy.com/media/vyTnNTrs3wqQ0UIvwE/giphy.gif' />
+        <img src='https://media.giphy.com/media/vyTnNTrs3wqQ0UIvwE/giphy.gif' alt='' />
       </Card>
       <Text>INCORRECT LOG-IN/PASSWORD PLEASE TRY AGAIN</Text>
     </Container>
