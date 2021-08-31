@@ -7,7 +7,6 @@ const Main = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   align-content: space-around;
-
   width: 80vw;
   min-height: 80vh;
 `;
@@ -16,7 +15,6 @@ const RandomGiph = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-
   font-size: 2rem;
   font-weight: bold;
 `;

@@ -41,7 +41,7 @@ const FollowContainer = styled.div`
   border: 10px solid white;
   width: 100%;
   height: 7rem;
-  transform: translate(11px, -11px);
+  /* transform: translate(11px, -11px); */
   margin: 3rem 0 3rem 0;
   font-family: 'Oswald', sans-serif;
 `;

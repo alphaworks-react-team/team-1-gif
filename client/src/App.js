@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Switch, Route } from "react-router";
 
-//routes
-// import routes from './config/routes';
-
 //Components
 import Container from "./component/Container";
 import Search from "./component/Search";
@@ -83,7 +80,7 @@ function App() {
     }
   }, []);
 
-//search
+  //search
   const onClick = (e) => {
     e.preventDefault();
 
@@ -95,7 +92,7 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-//categories
+  //categories
   const onCategoryClick = (e, value) => {
     e.preventDefault();
     axios
@@ -116,8 +113,6 @@ function App() {
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(trending[index]);
-
-    // arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
@@ -127,7 +122,6 @@ function App() {
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(category[index]);
-    // arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
@@ -137,11 +131,11 @@ function App() {
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(giph[index]);
-    // arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
-//Delete from favorites
+  
+  //Delete from favorites
   const DeleteFavoriteClicks = (index) => {
     console.log(index);
     const arr = [...favoriteGifs];
@@ -202,7 +196,7 @@ function App() {
               <Profile
                 favoriteGifs={favoriteGifs}
                 DeleteFavoriteClicks={DeleteFavoriteClicks}
-                // handleFollowToggle={handleFollowToggle} 
+                // handleFollowToggle={handleFollowToggle}
                 // toggleFollow={toggleFollow}
               />
             )}
