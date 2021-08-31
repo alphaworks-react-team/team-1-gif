@@ -6,21 +6,32 @@ import { MdCancel } from 'react-icons/md';
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 
+const ModalBackground = styled.div`
+  height: 100vh;
+  width: 100vw;
+
+  z-index: 1;
+
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+
+  background-color: rgb(51, 51, 51, 0.8);
+  padding-bottom: 5rem;
+`;
+
 const Modal = styled.div`
-  height: 300px;
-  width: 400px;
   background: black;
   color: white;
 
   z-index: 1;
   position: absolute;
 
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-  align-content: center;
-
-  margin-top: 5rem;
+  transform: translate(0rem, -15rem);
+  border-radius: 25px;
 `;
 
 const CancelBox = styled.div`
@@ -43,7 +54,7 @@ const CancelIcon = styled.div`
   cursor: pointer;
 
   :hover {
-    color: red;
+    color: #ff67e7;
   }
 `;
 
@@ -54,7 +65,6 @@ const LinkBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;
 
 const LinkTag = styled.div`
@@ -62,7 +72,7 @@ const LinkTag = styled.div`
   color: white;
 
   :hover {
-  color: red;
+    color: #ff67e7;
   }
 `;
 
@@ -79,18 +89,23 @@ const TrendingPage = ({
   return (
     <Container>
       {displayModal ? (
-        <Modal>
-          <CancelBox>
-            <CancelIcon onClick={() => setDisplayModal(false)}>
-              <MdCancel />
-            </CancelIcon>
-          </CancelBox>
-          <LinkBox>
-            <Link to={'/profile'} onClick={() => setDisplayModal(false)} style={{ textDecoration: 'none' }}>
-              <LinkTag>Log-in to like giphs</LinkTag>
-            </Link>
-          </LinkBox>
-        </Modal>
+        <ModalBackground>
+          <Modal>
+            <CancelBox>
+              <CancelIcon onClick={() => setDisplayModal(false)}>
+                <MdCancel />
+              </CancelIcon>
+            </CancelBox>
+            <LinkBox>
+              <Link
+                to={'/profile'}
+                onClick={() => setDisplayModal(false)}
+                style={{ textDecoration: 'none' }}>
+                <LinkTag>Log-in to like giphs</LinkTag>
+              </Link>
+            </LinkBox>
+          </Modal>
+        </ModalBackground>
       ) : null}
       <CarouselTest title='Trending'>
         <h3 style={{ margin: '0', paddingLeft: '10px', color: 'white' }}>
