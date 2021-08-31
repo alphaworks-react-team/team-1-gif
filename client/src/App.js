@@ -1,101 +1,91 @@
-import './App.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Switch, Route } from 'react-router';
+import "./App.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Switch, Route } from "react-router";
 
 //routes
 // import routes from './config/routes';
 
 //Components
-import Container from './component/Container';
-import Search from './component/Search';
-import Nav from './Styling/Nav';
-import Home from './component/Home';
-import TrendingPage from './component/TrendingPage';
-import Profile from './component/Profile';
-import Login from './component/Login';
-import AuthModal from './Styling/AuthModal';
+import Container from "./component/Container";
+import Search from "./component/Search";
+import Nav from "./Styling/Nav";
+import Home from "./component/Home";
+import TrendingPage from "./component/TrendingPage";
+import Profile from "./component/Profile";
+import Login from "./component/Login";
+import AuthModal from "./Styling/AuthModal";
 
 function App() {
   const [trending, setTrending] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [giph, setGiph] = useState(null);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
   const [randomGiph, setRandomGiph] = useState();
   const [favoriteGifs, setFavoriteGifs] = useState([]);
-
   const [searchError, setSearchError] = useState('');
-
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [auth, setAuth] = useState(false);
   const [authErr, setAuthErr] = useState(false);
+  // const [toggleFollow, setToggleFollow] = useState(false)
 
-  const getUser = e => {
+  //user auth
+  const getUser = (e) => {
     setUser(e.target.value);
   };
 
-  const getPassword = e => {
+  const getPassword = (e) => {
     setPassword(e.target.value);
   };
 
-  const getAuth = e => {
+  const getAuth = (e) => {
     e.preventDefault();
-    if (user !== 'Ari' && password !== 'ari') {
+    if (user !== "Ari" && password !== "ari") {
       setAuthErr(true);
-    } else if (user === 'Ari' && password === 'ari') {
+    } else if (user === "Ari" && password === "ari") {
       setAuthErr(false);
       setAuth(true);
     }
   };
 
-  const showErr = authErr => {
+  const showErr = (authErr) => {
     if (authErr) {
-      return <AuthModal/>;
-    } return null
-
+      return <AuthModal />;
+    }
+    return null;
   };
 
   //trending
   useEffect(() => {
     axios
-      .get('/api')
-      .then(res => setTrending(res.data.data))
-      .catch(err => console.log(err));
+      .get("/api")
+      .then((res) => setTrending(res.data.data))
+      .catch((err) => console.log(err));
     axios
-      .get('/api/categories')
-      .then(res => setCategories(res.data.data))
-      .catch(err => console.log(err));
+      .get("/api/categories")
+      .then((res) => setCategories(res.data.data))
+      .catch((err) => console.log(err));
     axios
-      .get('/api/randomGiph')
-      .then(res => setRandomGiph(res.data.data))
-      .catch(err => console.log(err));
+      .get("/api/randomGiph")
+      .then((res) => setRandomGiph(res.data.data))
+      .catch((err) => console.log(err));
   }, []);
 
   //favorites
   useEffect(() => {
-    const favorites = localStorage.getItem('favorites');
+    const favorites = localStorage.getItem("favorites");
     if (favorites === null) {
       setFavoriteGifs([]);
-      localStorage.setItem('favorites', JSON.stringify([]));
+      localStorage.setItem("favorites", JSON.stringify([]));
     } else {
       setFavoriteGifs(JSON.parse(favorites));
     }
   }, []);
 
-  //delete
-  // useEffect(() => {
-  //   const deletes = localStorage.getItem("deletes");
-  //   if (deletes === null) {
-  //     setDeleteGifs([]);
-  //     localStorage.setItem("deletes", JSON.stringify([]));
-  //   } else {
-  //     setDeleteGifs(JSON.parse(deletes));
-  //   }
-  // }, []);
-
-  const onClick = e => {
+//search
+  const onClick = (e) => {
     e.preventDefault();
     let isValid = validate();
     if( isValid ) {
@@ -105,11 +95,12 @@ function App() {
     }
     axios
       .get(`/api/search/?search=${search}`)
-      .then(res => {
-        document.querySelector('#searchInput').value = '';
+      .then((res) => {
+        document.querySelector("#searchInput").value = "";
         setGiph(res.data.data);
       })
       .catch((err) => console.log(err));
+
     setSearch('')
   };
 
@@ -129,17 +120,18 @@ const validate = () => {
     e.preventDefault();
     axios
       .get(`/api/search/?search=${value}`)
-      .then(res => setCategory(res.data.data))
-      .catch(err => console.log(err));
+      .then((res) => setCategory(res.data.data))
+      .catch((err) => console.log(err));
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     setSearch(e.target.value);
   };
 
-  const AddToFavoriteClick = index => {
+  //Add to Favorites
+  const AddToFavoriteClick = (index) => {
     if (auth === false) {
-      return alert('You NEED to be logged in');
+      return alert("You NEED to be logged in");
     }
     const arr = [...favoriteGifs];
     console.log(arr);
@@ -167,16 +159,21 @@ const validate = () => {
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
-
-  const DeleteFavoriteClicks = index => {
+//Delete from favorites
+  const DeleteFavoriteClicks = (index) => {
     console.log(index);
     const arr = [...favoriteGifs];
     arr.splice(index, 1);
-    const storageArray = JSON.parse(localStorage.getItem('favorites'));
+    const storageArray = JSON.parse(localStorage.getItem("favorites"));
     storageArray.splice(index, 1);
-    localStorage.setItem('favorites', JSON.stringify(storageArray));
+    localStorage.setItem("favorites", JSON.stringify(storageArray));
     setFavoriteGifs(arr);
   };
+
+  //toggle Follow for profile follow button... ignore this
+  // const handleFollowToggle = () =>{
+  //  setToggleFollow(!toggleFollow)
+  // }
 
   return (
     <div className="glizzy-app">
@@ -208,7 +205,7 @@ const validate = () => {
             />
           </Route>
 
-          <Route path='/profile'>
+          <Route path="/profile">
             {showErr(authErr)}
 
             {!auth ? (
@@ -224,6 +221,8 @@ const validate = () => {
               <Profile
                 favoriteGifs={favoriteGifs}
                 DeleteFavoriteClicks={DeleteFavoriteClicks}
+                // handleFollowToggle={handleFollowToggle} 
+                // toggleFollow={toggleFollow}
               />
             )}
           </Route>
