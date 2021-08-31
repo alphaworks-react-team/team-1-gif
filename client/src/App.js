@@ -24,8 +24,9 @@ function App() {
   const [category, setCategory] = useState();
   const [randomGiph, setRandomGiph] = useState();
   const [favoriteGifs, setFavoriteGifs] = useState([]);
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+  const [searchError, setSearchError] = useState('');
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
   const [auth, setAuth] = useState(false);
   const [authErr, setAuthErr] = useState(false);
   // const [toggleFollow, setToggleFollow] = useState(false)
@@ -86,7 +87,12 @@ function App() {
 //search
   const onClick = (e) => {
     e.preventDefault();
-
+    let isValid = validate();
+    if( isValid ) {
+      console.log('is valid')
+    } else {
+      setSearchError('')
+    }
     axios
       .get(`/api/search/?search=${search}`)
       .then((res) => {
@@ -94,8 +100,22 @@ function App() {
         setGiph(res.data.data);
       })
       .catch((err) => console.log(err));
+
+    setSearch('')
   };
-//categories
+
+const validate = () => {
+  let searchError = '';
+  if(search === '') {
+    searchError = 'YOLANDA';
+    setSearchError(searchError)
+  }
+  if(!searchError) {
+    return false;
+  }
+  return true;
+}
+
   const onCategoryClick = (e, value) => {
     e.preventDefault();
     axios
@@ -127,7 +147,6 @@ function App() {
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(category[index]);
-    // arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
@@ -137,7 +156,6 @@ function App() {
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(giph[index]);
-    // arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
@@ -170,7 +188,8 @@ function App() {
               randomGiph={randomGiph}
               AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
             >
-              <Search onClick={onClick} onChange={onChange}></Search>
+              <Search onClick={onClick} onChange={onChange} required></Search>
+              <p>{searchError}</p>
             </Home>
           </Route>
           <Route path="/trending">

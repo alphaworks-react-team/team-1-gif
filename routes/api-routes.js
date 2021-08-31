@@ -5,7 +5,6 @@ const API = process.env.GLIZZY_KEY;
 
 const trendingSearch = () => {
   return new Promise(async (resolve, reject) => {
-    console.log("hello");
     try {
       const request = await axios.get(
         `https://api.giphy.com/v1/gifs/trending?api_key=${API}`
@@ -40,7 +39,6 @@ const searchGiphy = (search) => {
 
 router.get("/api/search", async (req, res) => {
   try {
-    console.log(req.query);
     res.json(await searchGiphy(req.query.search));
   } catch (err) {
     res.json(err);
@@ -62,7 +60,6 @@ const getCategories = () => {
 
 router.get("/api/categories", async (req, res) => {
   try {
-    // console.log(req.query);
     res.json(await getCategories(res));
   } catch (err) {
     res.json(err);
