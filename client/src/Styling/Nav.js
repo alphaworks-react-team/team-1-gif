@@ -21,7 +21,7 @@ const Container = styled.div`
 const Text = styled.div`
   width: 65vw;
   font-size: 8vw;
-  font-family: 'Monoton', cursive;
+  font-family: "Monoton", cursive;
 
   display: flex;
   justify-content: center;

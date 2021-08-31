@@ -3,11 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Switch, Route } from "react-router";
 
-//routes
-// import routes from './config/routes';
-
-//Components
-import Container from "./component/Container";
+import Container from "./Styling/Container";
 import Search from "./component/Search";
 import Nav from "./Styling/Nav";
 import Home from "./component/Home";
@@ -31,7 +27,6 @@ function App() {
   const [authErr, setAuthErr] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
 
-  //user auth
   const getUser = (e) => {
     setUser(e.target.value);
   };
@@ -42,6 +37,9 @@ function App() {
 
   const getAuth = (e) => {
     e.preventDefault();
+    if (!user || !password) {
+      setAuthErr(true);
+    }
     if (user !== "Ari" && password !== "ari") {
       setAuthErr(true);
     } else if (user === "Ari" && password === "ari") {
@@ -57,7 +55,6 @@ function App() {
     return null;
   };
 
-  //trending
   useEffect(() => {
     axios
       .get("/api")
@@ -73,7 +70,6 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  //favorites
   useEffect(() => {
     const favorites = localStorage.getItem("favorites");
     if (favorites === null) {
@@ -84,7 +80,6 @@ function App() {
     }
   }, []);
 
-  //search
   const onClick = (e) => {
     e.preventDefault();
     let isValid = validate();
@@ -128,16 +123,13 @@ function App() {
     setSearch(e.target.value);
   };
 
-  //Add to Favorites
   const AddToFavoriteClick = (index) => {
     if (auth === false) {
       return setDisplayModal(true);
     }
     const arr = [...favoriteGifs];
-    console.log(arr);
-    arr.push(trending[index]);
 
-    // arr.push(category[index]);
+    arr.push(trending[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
@@ -146,9 +138,9 @@ function App() {
     if (auth === false) {
       return setDisplayModal(true);
     }
-    console.log(index);
+
     const arr = [...favoriteGifs];
-    console.log(arr);
+
     arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
@@ -158,16 +150,15 @@ function App() {
     if (auth === false) {
       return setDisplayModal(true);
     }
-    console.log(index);
+
     const arr = [...favoriteGifs];
     console.log(arr);
     arr.push(giph[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
-  //Delete from favorites
+
   const DeleteFavoriteClicks = (index) => {
-    console.log(index);
     const arr = [...favoriteGifs];
     arr.splice(index, 1);
     const storageArray = JSON.parse(localStorage.getItem("favorites"));
@@ -175,11 +166,6 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(storageArray));
     setFavoriteGifs(arr);
   };
-
-  //toggle Follow for profile follow button... ignore this
-  // const handleFollowToggle = () =>{
-  //  setToggleFollow(!toggleFollow)
-  // }
 
   return (
     <div className="glizzy-app">
@@ -232,8 +218,6 @@ function App() {
               <Profile
                 favoriteGifs={favoriteGifs}
                 DeleteFavoriteClicks={DeleteFavoriteClicks}
-                // handleFollowToggle={handleFollowToggle}
-                // toggleFollow={toggleFollow}
               />
             )}
           </Route>
