@@ -2,6 +2,7 @@ import React from "react";
 
 import { Card } from "../Styling/Card";
 import { BsTrash } from "react-icons/bs";
+import { HeartIcon } from "../Styling/TrendingStyles"
 import {
   Container,
   FavoritesContainer,
@@ -24,17 +25,16 @@ const Profile = ({ favoriteGifs, DeleteFavoriteClicks }) => {
         {favoriteGifs &&
           favoriteGifs.map((gif, index) => (
             <Card key={index} onClick={() => DeleteFavoriteClicks(index)}>
-              <img src={gif.images.fixed_height.url} alt="" />
-              <BsTrash
-                style={{
-                  fill: "black",
-                  transform: "translateX(-35px)",
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-                size="2em"
-              />
+              <img src={gif.images.fixed_height.url} alt='' />
+              <HeartIcon>
+                <BsTrash
+                  onClick={e => {
+                    e.target.style.background = '#FF67E7';
+                    e.target.style.color = 'white';
+                  }}
+                  size='2em'
+                />
+              </HeartIcon>
             </Card>
           ))}
       </FavoritesContainer>

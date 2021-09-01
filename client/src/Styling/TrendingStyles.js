@@ -26,6 +26,7 @@ export const Modal = styled.div`
   position: absolute;
   transform: translate(0rem, -15rem);
   border-radius: 25px;
+
 `;
 
 export const CancelBox = styled.div`
