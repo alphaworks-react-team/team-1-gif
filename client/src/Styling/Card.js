@@ -5,6 +5,7 @@ export const Card = styled.div`
   display: inline-block;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
+  height: 200px;
 
   &:after {
     content: "";

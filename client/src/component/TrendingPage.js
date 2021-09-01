@@ -50,13 +50,18 @@ const TrendingPage = ({
         <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
           Trending
         </h3>
-        <div>
+        <div
+          style={{
+            height: "225px",
+          }}
+        >
           {trending &&
             trending.map((gif, index) => (
               <div
                 style={{
                   display: "inline-block",
                   padding: "10px",
+                  height: "200px",
                 }}
                 key={index}
                 onClick={() => AddToFavoriteClick(index)}
@@ -98,7 +103,11 @@ const TrendingPage = ({
       </CarouselTest>
       {category && (
         <CarouselTest>
-          <div>
+          <div
+            style={{
+              height: "225px",
+            }}
+          >
             {category &&
               category.map((gif, index) => (
                 <div
@@ -106,6 +115,7 @@ const TrendingPage = ({
                   style={{
                     display: "inline-block",
                     padding: "10px",
+                    height: "200px",
                   }}
                   key={index}
                 >
