@@ -126,17 +126,17 @@ function App() {
   };
 
   const arr = [...favoriteGifs];
-
-  // for (let i = 0; i < arr.length; i++) {
-  //   if (arr[i].id === giph[index].id) {
-  //     return console.log("there is a duplicate");
-  //   }
-  // }
-
   const AddToFavoriteClick = (index) => {
     if (auth === false) {
       return setDisplayModal(true);
     }
+
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === trending[index].id) {
+        return console.log("there is a duplicate");
+      }
+    }
+
     arr.push(trending[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
@@ -149,6 +149,13 @@ function App() {
     if (auth === false) {
       return setDisplayModal(true);
     }
+
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === category[index].id) {
+        return console.log("there is a duplicate");
+      }
+    }
+
     arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
@@ -159,14 +166,18 @@ function App() {
       return setDisplayModal(true);
     }
 
-    console.log(arr);
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === giph[index].id) {
+        return console.log("there is a duplicate");
+      }
+    }
+
     arr.push(giph[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
   };
 
   const DeleteFavoriteClicks = (index) => {
-    const arr = [...favoriteGifs];
     arr.splice(index, 1);
     const storageArray = JSON.parse(localStorage.getItem("favorites"));
     storageArray.splice(index, 1);
