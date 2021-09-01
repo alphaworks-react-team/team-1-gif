@@ -2,7 +2,6 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Switch, Route } from "react-router";
-
 import Container from "./Styling/Container";
 import Search from "./component/Search";
 import Nav from "./Styling/Nav";
@@ -50,7 +49,10 @@ function App() {
 
   const showErr = (authErr) => {
     if (authErr) {
-      return <AuthModal setAuthErr={setAuthErr} />;
+      return <AuthModal setAuthErr = {
+        setAuthErr
+      }
+      />;
     }
     return null;
   };
@@ -102,14 +104,14 @@ function App() {
   const validate = () => {
     let searchError = "";
     if (search === "") {
-      searchError = "YOLANDA";
+      searchError = "Type Something!";
       setSearchError(searchError);
     }
     if (!searchError) {
       return false;
     }
     return true;
-  };
+  }
 
   const onCategoryClick = (e, value) => {
     e.preventDefault();
