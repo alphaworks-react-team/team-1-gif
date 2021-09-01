@@ -104,7 +104,7 @@ function App() {
   const validate = () => {
     let searchError = "";
     if (search === "") {
-      searchError = "YOLANDA";
+      searchError = "Type Something!";
       setSearchError(searchError);
     }
     if (!searchError) {
