@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Welcome To The Giphy App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Using the [Giphy API](https://developers.giphy.com/), we have created a web application that renders trending and different categories like _Anime, Food, Animals_ etc for the user to view.
 
-## Available Scripts
+## Setup Intructions
 
-In the project directory, you can run:
+- Clone the repository
 
-### `npm start`
+- cd into the project folder **team-1-gif**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- The first `npm install` will be in the team-1-gif folder! Here, you must also install [nodemon](https://www.npmjs.com/package/nodemon)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- cd into the **client** folder and do an `npm install` there as well.
 
-### `npm test`
+- Create an account on [Giphy API](https://developers.giphy.com/). Here you will produce your own API key.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- In the team-1-gif folder, create a _.env_ file to store your personalized api key with: Example: _GLIZZY_KEY=[your-api-key-here]_
 
-### `npm run build`
+- Add the _.env_ file to your _.gitignore_
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Lastly, cd into _team-1-gif_ folder and run the command `npm run dev`. This is so you can congruently run the frontend and backend of the application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# How to Navigate The Site
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Home
 
-### `npm run eject`
+When the program renders, you will find yourself at the home page where you will be greeted with a random Giph that renders new upon refresh. Thanks to the Giphy API provided by the site itself, using the endpoint tho search many giphs. The user has the ability to look up a specific giphy, which then replaces our random giph with the assortment of giphs searched
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Home](/images/HomePage.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Searched](/images/HomePageSearched.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+_____
 
-## Learn More
+## Trending
+As you may have noticed, the Navagation bar above has two icons on the opposite ends of each other. The _Profile_ and the _Trending_ pages. The Trending link will navigate you to a display of giphs that are both trending in real time, along with a feature of the _Categories_ below it. To give the user freedom to laugh and enjoy the many gifs they discover, the team thought it be fitting to add a _like_ feature to each other the gifs. As you can see, the "Trending" section has that for the user. The "Categories" setion provides that feature as well, once the user has clicked on a specific gif category to scroll through. 
+![Trending](/images/TrendingPage.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Example
+Here we have chosen the "Animal" category to show how the user can view more.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Categories](/images/TrendingPageCategories.png)
+____
 
-### Code Splitting
+# Login
+To enhance the user experience, the team created the login feature. Here the user can "login", giving themselves access to the gifs in order to like them to their profile.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**NOTE** 
+This feature is currently has only one login access! Please use these until the updated version has been created!
 
-### Analyzing the Bundle Size
+**USERNAME:** Ari
+**PASSWORD:** ari 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+note that the password must be lowercase. Thank you :)
+![Login](/images/Login.png)
+___
 
-### Making a Progressive Web App
+# Validations
+Validations are important, so to help our app be access to those that are "**Logged in**", the team created validations to prevent users from "liking a gif" unless they have their "account" active.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Example of a validation
+![Wrong Login](/images/LoginWrong.png)
 
-### Advanced Configuration
+___
+# Profile
+In the navagation bar, the profile icon is indicated on the left hand side of the web application. This page renders all the **liked** gifs our user has clicked on. Here the user has full access to enjoy their favorite gifs forever. However, like all good things that come to an end, a user had the aability to *delete* that specific gif from their profile.
+![Profile](/images/ProfilePage.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+___
+# Colaborators 
+- Ariel: https://github.com/AriAgress
+- Frank: https://github.com/Frank-5850
+- Angel: https://github.com/angelz510
+- Akiko: https://github.com/keeks5456
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
