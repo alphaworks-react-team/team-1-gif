@@ -1,9 +1,10 @@
-import React from "react";
-import Container from "../Styling/Container";
-import CarouselTest from "../test/CarouselTest";
-import { RiHeartLine } from "react-icons/ri";
-import { MdCancel } from "react-icons/md";
-import { Link } from "react-router-dom";
+import React from 'react';
+import Clipboard from './Clipboard';
+import Container from '../Styling/Container';
+import CarouselTest from '../test/CarouselTest';
+import { RiHeartLine } from 'react-icons/ri';
+import { MdCancel } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import {
   ModalBackground,
   Modal,
@@ -12,7 +13,7 @@ import {
   LinkBox,
   LinkTag,
   HeartIcon,
-} from "../Styling/TrendingStyles";
+} from '../Styling/TrendingStyles';
 
 const TrendingPage = ({
   trending,
@@ -36,44 +37,41 @@ const TrendingPage = ({
             </CancelBox>
             <LinkBox>
               <Link
-                to={"/profile"}
+                to={'/profile'}
                 onClick={() => setDisplayModal(false)}
-                style={{ textDecoration: "none" }}
-              >
+                style={{ textDecoration: 'none' }}>
                 <LinkTag>Log-in to like giphs</LinkTag>
               </Link>
             </LinkBox>
           </Modal>
         </ModalBackground>
       ) : null}
-      <CarouselTest title="Trending">
-        <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
+      <CarouselTest title='Trending'>
+        <h3 style={{ margin: '0', paddingLeft: '10px', color: 'white' }}>
           Trending
         </h3>
         <div
           style={{
-            height: "225px",
-          }}
-        >
+            height: '225px',
+          }}>
           {trending &&
             trending.map((gif, index) => (
               <div
                 style={{
-                  display: "inline-block",
-                  padding: "10px",
-                  height: "200px",
+                  display: 'inline-block',
+                  padding: '10px',
+                  height: '200px',
                 }}
                 key={index}
-                onClick={() => AddToFavoriteClick(index)}
-              >
-                <img src={gif.images.fixed_height.url} alt="" />
+                onClick={() => AddToFavoriteClick(index)}>
+                <Clipboard giph={trending} index={index} />
+                <img src={gif.images.fixed_height.url} alt='' />
                 <HeartIcon>
                   <RiHeartLine
-                    onClick={(e) => {
-                      e.target.style.background = "#FF67E7";
-                      e.target.style.color = "white";
+                    onClick={e => {
+                      e.target.style.color = '#ff67e7';
                     }}
-                    size="2em"
+                    size='2em'
                   />
                 </HeartIcon>
               </div>
@@ -81,22 +79,21 @@ const TrendingPage = ({
         </div>
       </CarouselTest>
       <CarouselTest>
-        <h3 style={{ margin: "0", paddingLeft: "10px", color: "white" }}>
+        <h3 style={{ margin: '0', paddingLeft: '10px', color: 'white' }}>
           Categories
         </h3>
         <div>
           {categories &&
             categories.map((gif, index) => (
               <div
-                onClick={(e) => onClick(e, gif.name)}
+                onClick={e => onClick(e, gif.name)}
                 style={{
-                  display: "inline-block",
-                  padding: "10px",
+                  display: 'inline-block',
+                  padding: '10px',
                 }}
-                key={index}
-              >
+                key={index}>
                 <h4 style={{ margin: 0 }}>{gif.name}</h4>
-                <img src={gif.gif.images.fixed_height.url} alt="" />
+                <img src={gif.gif.images.fixed_height.url} alt='' />
               </div>
             ))}
         </div>
@@ -105,29 +102,27 @@ const TrendingPage = ({
         <CarouselTest>
           <div
             style={{
-              height: "225px",
-            }}
-          >
+              height: '225px',
+            }}>
             {category &&
               category.map((gif, index) => (
                 <div
-                  onClick={(e) => AddToFavoriteClickFromCategory(index)}
+                  onClick={e => AddToFavoriteClickFromCategory(index)}
                   style={{
-                    display: "inline-block",
-                    padding: "10px",
-                    height: "200px",
+                    display: 'inline-block',
+                    padding: '10px',
+                    height: '200px',
                   }}
-                  key={index}
-                >
+                  key={index}>
                   <h4 style={{ margin: 0 }}>{}</h4>
-                  <img src={gif.images.fixed_height.url} alt="" />
+                  {/* <Clipboard giph={trending} index={index} /> */}
+                  <img src={gif.images.fixed_height.url} alt='' />
                   <HeartIcon>
                     <RiHeartLine
-                      onClick={(e) => {
-                        e.target.style.background = "#FF67E7";
-                        e.target.style.color = "white";
+                      onClick={e => {
+                        e.target.style.color = '#ff67e7';
                       }}
-                      size="2em"
+                      size='2em'
                     />
                   </HeartIcon>
                 </div>

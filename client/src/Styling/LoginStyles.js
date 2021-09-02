@@ -22,6 +22,8 @@ export const Typography = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
+  font-family: 'Oswald', sans-serif;
 `;
 
 export const Textbox = styled.input`
@@ -58,4 +60,5 @@ export const SubmitButton = styled.button`
   -webkit-backdrop-filter: blur(4px);
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  font-weight: bold;
 `;
