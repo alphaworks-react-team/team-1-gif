@@ -43,7 +43,7 @@ Here we have chosen the "Animal" category to show how the user can view more.
 ![Categories](/images/TrendingPageCategories.png)
 ____
 
-# Login
+# Login & Sign-Up
 To enhance the user experience, the team created the login feature. Here the user can "login", giving themselves access to the gifs in order to like them to their profile.
 
 **NOTE** 
@@ -52,8 +52,9 @@ This feature is currently has only one login access! Please use these until the 
 **USERNAME:** Ari
 **PASSWORD:** ari 
 
-note that the password must be lowercase. Thank you :)
-![Login](/images/Login.png)
+Note that the password must be lowercase. Thank you :)
+
+![Login](/images/RegisterLogin.png)
 ___
 
 # Validations
