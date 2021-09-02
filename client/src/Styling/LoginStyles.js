@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const  Container = styled.form`
+export const Container = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: space-around;
@@ -17,11 +17,14 @@ export const  Container = styled.form`
   margin-top: 5rem;
 `;
 
-export const  Typography = styled.div`
+export const Typography = styled.div`
   font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const  Textbox = styled.input`
+export const Textbox = styled.input`
   margin: 0;
   padding: 0;
   width: 50%;

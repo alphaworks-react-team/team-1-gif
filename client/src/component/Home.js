@@ -13,6 +13,7 @@ import {
 } from "../Styling/TrendingStyles";
 import { MdCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 // const ModalBackground = styled.div`
 //   z-index: 10;
@@ -103,6 +104,11 @@ import { Link } from "react-router-dom";
 //   }
 // `;
 
+const Div = styled.img.attrs((props) => ({
+  src: props.src,
+  alt: "broken",
+}))``;
+
 const Home = ({
   giph,
   randomGiph,
@@ -138,7 +144,7 @@ const Home = ({
       {!giph ? (
         <RandomGiph>
           <Text>Random Gliphy Yo!</Text>
-          <img src={randomGiph?.images.original.url} alt="" />
+          <Div src={randomGiph?.images.original.url} alt="" />
         </RandomGiph>
       ) : (
         giph.map((gif, index) => (
