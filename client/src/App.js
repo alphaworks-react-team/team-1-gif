@@ -130,25 +130,32 @@ function App() {
     if (auth === false) {
       return setDisplayModal(true);
     }
+
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].id === trending[index].id) {
         return console.log("there is a duplicate");
       }
     }
+
     arr.push(trending[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
+
   };
+
+
 
   const AddToFavoriteClickFromCategory = (index) => {
     if (auth === false) {
       return setDisplayModal(true);
     }
+
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].id === category[index].id) {
         return console.log("there is a duplicate");
       }
     }
+
     arr.push(category[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
@@ -158,12 +165,13 @@ function App() {
     if (auth === false) {
       return setDisplayModal(true);
     }
+
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].id === giph[index].id) {
         return console.log("there is a duplicate");
       }
     }
-    // console.log(arr);
+
     arr.push(giph[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
