@@ -30,14 +30,14 @@ export const ProfilePic = styled.div`
 `;
 
 export const  FollowContainer = styled.div`
+color: white;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column wrap;
-  border: 10px solid white;
-  width: 100%;
+  border: 8px solid black;
+  width: 110%;
   height: 7rem;
-  /* transform: translate(11px, -11px); */
   margin: 3rem 0 3rem 0;
   font-family: 'Oswald', sans-serif;
 `;
