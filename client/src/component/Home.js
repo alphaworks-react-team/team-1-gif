@@ -12,8 +12,14 @@ import {
   LinkTag,
   HeartIcon,
 } from '../Styling/TrendingStyles';
+import styled from "styled-components";
 import { MdCancel } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+
+const Div = styled.img.attrs((props) => ({
+  src: props.src,
+  alt: "broken",
+}))``;
 
 const Home = ({
   giph,
@@ -49,7 +55,7 @@ const Home = ({
       {!giph ? (
         <RandomGiph>
           <Text>Random Gliphy Yo!</Text>
-          <img src={randomGiph?.images.original.url} alt='' />
+          <Div src={randomGiph?.images.original.url} alt="" />
         </RandomGiph>
       ) : (
         giph.map((gif, index) => (

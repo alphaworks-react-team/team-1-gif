@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Container = styled.form`
+export const Container = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: space-around;
@@ -19,6 +19,9 @@ export const Container = styled.form`
 
 export const Typography = styled.div`
   font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
   font-family: 'Oswald', sans-serif;
 `;

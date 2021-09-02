@@ -25,6 +25,7 @@ function App() {
   const [auth, setAuth] = useState(false);
   const [authErr, setAuthErr] = useState(false);
   const [displayModal, setDisplayModal] = useState(false);
+  const [registered, setRegistered] = useState(true);
 
   const getUser = (e) => {
     setUser(e.target.value);
@@ -34,14 +35,25 @@ function App() {
     setPassword(e.target.value);
   };
 
+  const signup = (e, user, password) => {
+    e.preventDefault();
+    if (!user || !password) {
+      setAuthErr(true);
+    }
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("password", JSON.stringify(password));
+  };
+
   const getAuth = (e) => {
     e.preventDefault();
     if (!user || !password) {
       setAuthErr(true);
     }
-    if (user !== "Ari" && password !== "ari") {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedPass = JSON.parse(localStorage.getItem("password"));
+    if (storedUser !== user && storedPass !== password) {
       setAuthErr(true);
-    } else if (user === "Ari" && password === "ari") {
+    } else if (storedUser === user && storedPass === password) {
       setAuthErr(false);
       setAuth(true);
     }
@@ -49,10 +61,7 @@ function App() {
 
   const showErr = (authErr) => {
     if (authErr) {
-      return <AuthModal setAuthErr = {
-        setAuthErr
-      }
-      />;
+      return <AuthModal setAuthErr={setAuthErr} />;
     }
     return null;
   };
@@ -111,7 +120,7 @@ function App() {
       return false;
     }
     return true;
-  }
+  };
 
   const onCategoryClick = (e, value) => {
     e.preventDefault();
@@ -140,7 +149,6 @@ function App() {
     arr.push(trending[index]);
     localStorage.setItem("favorites", JSON.stringify(arr));
     setFavoriteGifs(arr);
-
   };
 
   const AddToFavoriteClickFromCategory = (index) => {
@@ -227,6 +235,11 @@ function App() {
                 getPassword={getPassword}
                 auth={auth}
                 getAuth={getAuth}
+                registered={registered}
+                setRegistered={setRegistered}
+                signup={signup}
+                user={user}
+                password={password}
               />
             ) : (
               <Profile
