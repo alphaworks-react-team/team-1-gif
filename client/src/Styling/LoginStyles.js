@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const  Container = styled.form`
+export const Container = styled.form`
   display: flex;
   flex-flow: column;
   justify-content: space-around;
@@ -17,11 +17,13 @@ export const  Container = styled.form`
   margin-top: 5rem;
 `;
 
-export const  Typography = styled.div`
+export const Typography = styled.div`
   font-size: 30px;
+  font-weight: bold;
+  font-family: 'Oswald', sans-serif;
 `;
 
-export const  Textbox = styled.input`
+export const Textbox = styled.input`
   margin: 0;
   padding: 0;
   width: 50%;
@@ -55,4 +57,5 @@ export const SubmitButton = styled.button`
   -webkit-backdrop-filter: blur(4px);
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  font-weight: bold;
 `;

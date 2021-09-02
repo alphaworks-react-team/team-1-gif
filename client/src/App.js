@@ -143,8 +143,6 @@ function App() {
 
   };
 
-
-
   const AddToFavoriteClickFromCategory = (index) => {
     if (auth === false) {
       return setDisplayModal(true);
@@ -186,11 +184,11 @@ function App() {
   };
 
   return (
-    <div className="glizzy-app">
+    <div className='glizzy-app'>
       <Nav />
       <Container>
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Home
               giph={giph}
               onClick={onClick}
@@ -198,13 +196,12 @@ function App() {
               randomGiph={randomGiph}
               AddToFavoriteClickFromSearch={AddToFavoriteClickFromSearch}
               displayModal={displayModal}
-              setDisplayModal={setDisplayModal}
-            >
+              setDisplayModal={setDisplayModal}>
               <Search onClick={onClick} onChange={onChange} required></Search>
               <p>{searchError}</p>
             </Home>
           </Route>
-          <Route path="/trending">
+          <Route path='/trending'>
             <TrendingPage
               giph={giph}
               trending={trending}
@@ -219,8 +216,7 @@ function App() {
               auth={auth}
             />
           </Route>
-
-          <Route path="/profile">
+          <Route path='/profile'>
             {showErr(authErr)}
 
             {!auth ? (
