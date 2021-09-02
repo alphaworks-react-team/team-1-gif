@@ -68,15 +68,27 @@ export const LinkTag = styled.div`
 export const HeartIcon = styled.div`
   height: 30px;
   width: 30px;
-  color: #ff67e7;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, .5) 0%,
+    rgba(255, 154, 0, .5) 10%,
+    rgba(208, 222, 33, .5) 20%,
+    rgba(79, 220, 74, .5) 30%,
+    rgba(63, 218, 216, .5) 40%,
+    rgba(47, 201, 226, .5) 50%,
+    rgba(28, 127, 238, .5) 60%,
+    rgba(95, 21, 242, .5) 70%,
+    rgba(186, 12, 248, .5) 80%,
+    rgba(251, 7, 217, .5) 90%,
+    rgba(255, 0, 0, .5) 100%
+  );
   cursor: pointer;
-  background: white;
+
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
-  transform: translateY(-35px);
-  border-radius: 50% !important ;
+  transform: translateY(-33px);
   :hover {
     color: #ff67e7;
   }
