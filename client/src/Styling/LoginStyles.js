@@ -23,10 +23,31 @@ export const Typography = styled.div`
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 `;
 
-export const Textbox = styled.input`
+export const UserInput = styled.input.attrs({ id: "userInput" })`
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  height: 50px;
+  font-size: 35px;
+  background: none;
+  border-bottom: 3px solid rgb(48, 48, 48, 0.3);
+  outline: none;
+  margin: none;
+  padding: none;
+  text-align: center;
+
+  &:hover {
+    background: rgb(255, 255, 255, 0.2);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 3px solid rgb(48, 48, 48);
+    transition: all 0.5s ease;
+  }
+`;
+export const PassInput = styled.input.attrs({ id: "passInput" })`
   margin: 0;
   padding: 0;
   width: 50%;

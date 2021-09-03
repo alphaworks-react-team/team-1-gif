@@ -2,7 +2,8 @@ import React from "react";
 import {
   Container,
   Typography,
-  Textbox,
+  UserInput,
+  PassInput,
   SubmitButton,
 } from "../Styling/LoginStyles";
 
@@ -31,8 +32,8 @@ const Login = ({
             }}
             onSubmit={getAuth}
           >
-            <Textbox onChange={getUser} placeholder="User Name" />
-            <Textbox
+            <UserInput onChange={getUser} placeholder="User Name" />
+            <PassInput
               onChange={getPassword}
               placeholder="Password"
               type="password"
@@ -62,8 +63,8 @@ const Login = ({
             }}
             onSubmit={(e) => signup(e, user, password)}
           >
-            <Textbox onChange={getUser} placeholder="User Name" />
-            <Textbox
+            <UserInput onChange={getUser} placeholder="User Name" />
+            <PassInput
               onChange={getPassword}
               placeholder="Password"
               type="password"
