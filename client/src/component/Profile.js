@@ -20,7 +20,6 @@ const Profile = ({ favoriteGifs, DeleteFavoriteClicks }) => {
         <h1>4,830</h1>
         <h1>FOLLOWERS</h1>
         <h1>8.7M</h1>
-        <h1>Cat Nip Is Life</h1>
       </FollowContainer>
       <FavoritesContainer>
         {favoriteGifs &&

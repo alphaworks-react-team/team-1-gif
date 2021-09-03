@@ -6,6 +6,11 @@ export const Container = styled.div`
   margin: 0 8rem 0 8rem;
   margin-bottom: 5rem;
   align-items: center;
+  
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 0;
+  }
 `;
 
 export const FavoritesContainer = styled.div`
@@ -15,6 +20,7 @@ export const FavoritesContainer = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   margin-bottom: 5rem;
+  
 `;
 
 export const ProfilePic = styled.div`
@@ -35,10 +41,22 @@ color: white;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column wrap;
-  border: 8px solid black;
+  border: 6px solid black;
+  border-radius: 10px;
   width: 110%;
   height: 7rem;
   margin: 3rem 0 3rem 0;
   font-family: 'Oswald', sans-serif;
+
+  @media (max-width: 600px) {
+    width: 90%;
+    margin: 0;
+    display: flex;
+    align-content: space-evenly;
+    align-items: center;
+    flex-flow: row wrap;
+    font-size: small;
+    /* box-sizing:border-box; */
+  }
 `;
 
