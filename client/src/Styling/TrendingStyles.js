@@ -2,18 +2,15 @@ import styled from "styled-components";
 
 export const ModalBackground = styled.div`
   z-index: 10;
-
   display: flex;
   flex-flow: wrap column;
   justify-content: center;
   align-items: center;
-
   position: fixed;
   top: 0px;
   left: 0px;
   bottom: 0px;
   right: 0px;
-
   background-color: rgb(51, 51, 51, 0.8);
   background-cover: fill;
   // padding-bottom: 5rem;
@@ -83,7 +80,6 @@ export const HeartIcon = styled.div`
     rgba(255, 0, 0, .5) 100%
   );
   cursor: pointer;
-
   display: flex;
   justify-content: center;
   align-items: center;

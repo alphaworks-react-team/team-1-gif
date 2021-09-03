@@ -43,17 +43,12 @@ Here we have chosen the "Animal" category to show how the user can view more.
 ![Categories](/images/TrendingPageCategories.png)
 ____
 
-# Login
-To enhance the user experience, the team created the login feature. Here the user can "login", giving themselves access to the gifs in order to like them to their profile.
+# Login & Sign-Up
+To enhance the user experience, the team created the sign-up & login feature. A new user must register for an account to have that will store their personal liked gis. They then will have the ability to login every time becasue their username and login are stored in `localstorage` for a single need login.
 
-**NOTE** 
-This feature is currently has only one login access! Please use these until the updated version has been created!
 
-**USERNAME:** Ari
-**PASSWORD:** ari 
-
-note that the password must be lowercase. Thank you :)
-![Login](/images/Login.png)
+![Login](/images/RegisterLogin.png)
+![Login](/images/SignUp.png)
 ___
 
 # Validations
