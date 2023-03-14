@@ -1,4 +1,4 @@
-# GIFFY API
+# GIPHY API
 
 ### Setup
 
